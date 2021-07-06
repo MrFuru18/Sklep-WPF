@@ -91,7 +91,8 @@
             <Button x:Name="Settings_button"
                     BorderBrush="Transparent"
                     Background="Transparent"
-                    Margin="5">
+                    Margin="5"
+                    Command="{Binding UptadeViewCommand}" CommandParameter="Settings">
                 <StackPanel>
                     <Image  Source="Images/icon1.png"
                             Stretch="None"/>
@@ -106,7 +107,8 @@
             <Button x:Name="Logout_button"
                     BorderBrush="Transparent"
                     Background="Transparent"
-                    Margin="5">
+                    Margin="5"
+                    Command="{Binding UptadeViewCommand}" CommandParameter="Login">
                 <StackPanel>
                     <Image  Source="Images/icon1.png"
                             Stretch="None"/>
@@ -119,7 +121,9 @@
 
         </StackPanel>
 
-        <views:LoginPage Grid.Column="1"/>
+        <ContentControl Grid.Column="1" Content="{Binding SelectedPage}"/>
+
+        <!--views:LoginPage Grid.Column="1"/-->
 
     </Grid>
 </Window>
