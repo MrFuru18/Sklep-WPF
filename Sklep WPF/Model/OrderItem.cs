@@ -8,6 +8,9 @@ namespace Sklep_WPF.Model
 {
     class OrderItem //w koszyku lub zamówieniu
     {
-
+        public long id { get; set; }
+        public long ilosc { get; set; }
+        public double cena_1 { get; set; }
+        public Product produkt { get; set; }
     }
 }

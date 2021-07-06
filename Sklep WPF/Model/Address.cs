@@ -8,5 +8,11 @@ namespace Sklep_WPF.Model
 {
     class Address
     {
+        public long id { get; set; }
+        public string ulica { get; set; }
+        public long nr { get; set; }
+        public long nr_mieszkania { get; set; }
+        public string kod_pocztowy { get; set; }
+        public string miejscowosc { get; set; }
     }
 }
