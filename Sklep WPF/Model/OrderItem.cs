@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sklep_WPF.Model
 {
-    class Item //w koszyku lub zamówieniu
+    class OrderItem //w koszyku lub zamówieniu
     {
 
     }
