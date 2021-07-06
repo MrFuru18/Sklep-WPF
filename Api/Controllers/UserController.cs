@@ -8,7 +8,7 @@ using Api.Model;
 namespace Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("User")]
     public class UserController : ControllerBase
     {
 
@@ -40,14 +40,13 @@ namespace Api.Controllers
         [Route("Addresses")]
         public IEnumerable<Address> GetAddresses([FromHeader]long id, [FromHeader]string token)
         {
-            throw new NotImplementedException();
-            //DB db = new DB();
-            //return db.Users.Where(
-            //    x => 
-            //        x.email == mail && token == x.token
-            //    )
-            //    .FirstOrDefault()
-            //    .adresy;
+            DB db = new DB();
+            return db.Users.Where(
+                x => 
+                    x.id == id && token == x.token
+                )
+                .FirstOrDefault()
+                .adresy;
         }
     }
 }

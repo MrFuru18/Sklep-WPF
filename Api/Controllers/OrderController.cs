@@ -1,16 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Api.Model;
 
 namespace Api.Controllers
 {
+    [ApiController]
+    [Route("Order")]
     public class OrderController : Controller
     {
-        public IActionResult Index()
+        private readonly ILogger<OrderController> _logger;
+
+        public OrderController(ILogger<OrderController> logger)
         {
-            return View();
+            _logger = logger;
         }
     }
 }
