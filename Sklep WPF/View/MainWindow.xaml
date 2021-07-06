@@ -3,17 +3,123 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Sklep_WPF"
         
+        xmlns:local="clr-namespace:Sklep_WPF"
+        xmlns:views="clr-namespace:Sklep_WPF.View.Views"
         xmlns:vm="clr-namespace:Sklep_WPF.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="App" 
+        Height="600" 
+        Width="1000"
+        ResizeMode="NoResize">
 
     <Window.DataContext>
         <vm:MainViewModel x:Name="vm"/>
     </Window.DataContext>
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="140"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Side Menu-->
+        <StackPanel Orientation="Vertical"
+                    Background="LightSlateGray">
+            
+            <!-- Profile Button -->
+            <Button x:Name="Login_button"
+                    BorderBrush="Transparent"
+                    Background="Transparent"
+                    Margin="5,10,5,5">
+                <StackPanel>
+                    <Image  Source="Images/icon1.png"
+                            Stretch="None"/>
+                    <TextBlock  x:Name="Login_textblock"
+                                Text="Pokaż profil"
+                                HorizontalAlignment="Center"
+                                FontSize="20"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Shop Button -->
+            <Button x:Name="Shop_button"
+                    BorderBrush="Transparent"
+                    Background="Transparent"
+                    Margin="5">
+                <StackPanel>
+                    <Image  Source="Images/icon1.png"
+                            Stretch="None"/>
+                    <TextBlock  x:Name="Shop_textblock"
+                                Text="Sklep"
+                                HorizontalAlignment="Center"
+                                FontSize="20"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Cart Button -->
+            <Button x:Name="Cart_button"
+                    BorderBrush="Transparent"
+                    Background="Transparent"
+                    Margin="5">
+                <StackPanel>
+                    <Image  Source="Images/icon1.png"
+                            Stretch="None"/>
+                    <TextBlock  x:Name="Orders_textblock"
+                                Text="Koszyk"
+                                HorizontalAlignment="Center"
+                                FontSize="20"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Order HIstory Button -->
+            <Button x:Name="Order_history_button"
+                    BorderBrush="Transparent"
+                    Background="Transparent"
+                    Margin="5">
+                <StackPanel>
+                    <Image  Source="Images/icon1.png"
+                            Stretch="None"/>
+                    <TextBlock  x:Name="Order_history_textblock"
+                                Text="Historia"
+                                HorizontalAlignment="Center"
+                                FontSize="20"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Settings Button -->
+            <Button x:Name="Settings_button"
+                    BorderBrush="Transparent"
+                    Background="Transparent"
+                    Margin="5">
+                <StackPanel>
+                    <Image  Source="Images/icon1.png"
+                            Stretch="None"/>
+                    <TextBlock  x:Name="Settings_textblock"
+                                Text="Ustawienia"
+                                HorizontalAlignment="Center"
+                                FontSize="20"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Logout Button -->
+            <Button x:Name="Logout_button"
+                    BorderBrush="Transparent"
+                    Background="Transparent"
+                    Margin="5">
+                <StackPanel>
+                    <Image  Source="Images/icon1.png"
+                            Stretch="None"/>
+                    <TextBlock  x:Name="Logout_textblock"
+                                Text="Wyloguj się"
+                                HorizontalAlignment="Center"
+                                FontSize="20"/>
+                </StackPanel>
+            </Button>
+
+        </StackPanel>
+
+        <views:LoginPage Grid.Column="1"/>
+
     </Grid>
 </Window>
