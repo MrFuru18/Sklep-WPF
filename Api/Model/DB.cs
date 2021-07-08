@@ -17,7 +17,7 @@ namespace Api.Model
 
         public DB(DbContextOptions<DB> opt) : base(opt)
         {
-            Database.EnsureCreated();
+            Database.Migrate();
         }
         public DB():base() {}
         protected override void OnModelCreating(ModelBuilder builder)

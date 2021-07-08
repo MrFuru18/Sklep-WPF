@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Api.Model;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace Api.Controllers
 {
@@ -13,25 +15,34 @@ namespace Api.Controllers
     public class ProductController : Controller
     {
         private readonly ILogger<ProductController> _logger;
-
-        public ProductController(ILogger<ProductController> logger)
+        private readonly DB db;
+        public ProductController(ILogger<ProductController> logger, DB dbContext)
         {
             _logger = logger;
+            db = dbContext;
+        }
+
+        [HttpPost]
+        [Route("Add")]
+        public void addProduct([FromHeader]Product product)
+        {
+            db.Products.Add(product);
+            db.SaveChanges();
         }
 
         [HttpGet]
         [Route("getAll")]
-        public IEnumerable<Product> getAllProducts()
+        [AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<Product>>> getAllProducts()
         {
-            DB db = new DB();
-            return db.Products.Select(x => new Product()
+            return await db.Products.Select(x => new Product()
             {
                 id = x.id,
                 nazwa = x.nazwa,
                 cena = x.cena,
                 dostepna_ilosc = x.dostepna_ilosc,
                 opis = x.opis
-            });
+            }).ToListAsync();
         }
 
     }

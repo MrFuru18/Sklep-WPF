@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Api.Model;
+using Microsoft.AspNetCore.Authorization;
+using Api.Model.ViewModel;
+
 namespace Api.Controllers
 {
     [ApiController]
@@ -13,40 +16,50 @@ namespace Api.Controllers
     {
 
         private readonly ILogger<UserController> _logger;
+        private readonly DB db;
 
-        public UserController(ILogger<UserController> logger)
+        public UserController(ILogger<UserController> logger,DB dbContext)
         {
             _logger = logger;
+            db = dbContext;
         }
 
         [HttpPost]
         [Route("Login")]
-        public User Login([FromHeader]string mail, [FromHeader]string pass)
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public UserView Login([FromHeader]string mail, [FromHeader]string pass)
         {
-            throw new NotImplementedException();
-            //string token = "";
-            //DB db = new DB();
-            //token = db.Users.Where(
-            //    x => 
-            //        x.email == mail && pass == x.haslo
-            //        )
-            //    .FirstOrDefault()
-            //    .token;
-            //return token;
+            User r = db.Users.Where(
+                x =>
+                    x.email == mail && pass == x.haslo
+                    )
+                .FirstOrDefault();
+            return new UserView()
+            {
+                login = r.login,
+                email = r.email,
+                imie = r.imie,
+                nazwisko = r.nazwisko,
+                nr_tel = r.nr_tel,
+                adresy = r.adresy,
+                token = r.token
+            };
         }
 
 
         [HttpPost]
         [Route("Addresses")]
-        public IEnumerable<Address> GetAddresses([FromHeader]long id, [FromHeader]string token)
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public IEnumerable<AddressView> GetAddresses([FromHeader]string login, [FromHeader]string token)
         {
-            DB db = new DB();
             return db.Users.Where(
                 x => 
-                    x.id == id && token == x.token
+                    x.login == login && token == x.token
                 )
                 .FirstOrDefault()
-                .adresy;
+                .adresy as List<AddressView>;
         }
     }
 }
