@@ -6,12 +6,40 @@
              xmlns:local="clr-namespace:Sklep_WPF.View.Views"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="300">
-    <Grid>
 
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <TextBlock Text="{TemplateBinding Content}" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <TextBlock Text="{TemplateBinding Content}" TextDecorations="Underline" />
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
         <StackPanel Width="300" VerticalAlignment="Center">
 
-            <Image Source="/View/Images/IconBig.png"
-                       Stretch="None"
+            <TextBlock Text="Zaloguj"
+                       VerticalAlignment="Center"
+                       FontSize="30"
+                       HorizontalAlignment="Center"
                        Margin="0,0,0,40"/>
 
                 <!-- Login TextBox -->
@@ -42,18 +70,14 @@
                          Foreground="#777777"/>
 
             <!-- Login Button -->
-            <Button BorderBrush="Transparent"
-                    Background="Transparent"
-                    Foreground="Black"
+            <Button Foreground="Black"
                     HorizontalAlignment="Center"
-                    Content="Zaloguj"
+                    Content="Zaloguj się"
                     FontSize="20"
                     Margin="0,30,0,0"/>
 
             <!-- Sign Up Button -->
-            <Button BorderBrush="Transparent"
-                    Background="Transparent"
-                    Foreground="Gray"
+            <Button Foreground="Gray"
                     HorizontalAlignment="Center"
                     Content="Utwórz Konto"
                     FontSize="20"

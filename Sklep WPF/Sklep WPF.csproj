@@ -123,9 +123,6 @@
     <Resource Include="View\Images\github.png" />
     <Resource Include="View\Images\Icon1.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="View\Images\IconBig.png" />
-  </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
