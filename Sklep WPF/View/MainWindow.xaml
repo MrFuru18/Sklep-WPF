@@ -37,7 +37,8 @@
             
             <!-- User Button -->
             <Button x:Name="User_button"
-                    Margin="5,10,5,5">
+                    Margin="5,10,5,5"
+                    Command="{Binding UptadeViewCommand}" CommandParameter="User">
                 <StackPanel>
                     <Image  Source="Images/person_black_36dp.png"
                             Stretch="None"/>
@@ -50,7 +51,8 @@
 
             <!-- Shop Button -->
             <Button x:Name="Shop_button"
-                    Margin="5">
+                    Margin="5"
+                    Command="{Binding UptadeViewCommand}" CommandParameter="Shop">
                 <StackPanel>
                     <Image  Source="Images/storefront_black_36dp.png"
                             Stretch="None"/>
@@ -63,7 +65,8 @@
 
             <!-- Cart Button -->
             <Button x:Name="Cart_button"
-                    Margin="5">
+                    Margin="5"
+                    Command="{Binding UptadeViewCommand}" CommandParameter="Cart">
                 <StackPanel>
                     <Image  Source="Images/shopping_cart_black_36dp.png"
                             Stretch="None"/>
@@ -76,7 +79,8 @@
 
             <!-- Order History Button -->
             <Button x:Name="Order_history_button"
-                    Margin="5">
+                    Margin="5"
+                    Command="{Binding UptadeViewCommand}" CommandParameter="Order History">
                 <StackPanel>
                     <Image  Source="Images/history_black_36dp.png"
                             Stretch="None"/>
@@ -104,7 +108,7 @@
             <!-- Logout Button -->
             <Button x:Name="Logout_button"
                     Margin="5"
-                    Command="{Binding UptadeViewCommand}" CommandParameter="Login">
+                    Command="{Binding UptadeViewCommand}" CommandParameter="Logout">
                 <StackPanel>
                     <Image  Source="Images/logout_black_36dp.png"
                             Stretch="None"/>

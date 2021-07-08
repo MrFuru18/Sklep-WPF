@@ -9,6 +9,18 @@
         <DataTemplate DataType="{x:Type vm:LoginViewModel}">
             <views:LoginPage/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:UserViewModel}">
+            <views:UserPage/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:ShopViewModel}">
+            <views:ShopPage/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:CartViewModel}">
+            <views:CartPage/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:OrderHistoryViewModel}">
+            <views:OrderHistoryPage/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type vm:SettingsViewModel}">
             <views:SettingsPage/>
         </DataTemplate>

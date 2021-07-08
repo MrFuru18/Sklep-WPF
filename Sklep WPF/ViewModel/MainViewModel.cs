@@ -29,11 +29,27 @@ namespace Sklep_WPF.ViewModel
             {
                 return _uptadeViewCommand ?? (_uptadeViewCommand = new RelayCommand((p) =>
                 {
-                    if (p.ToString() == "Settings")
+                    if (p.ToString() == "User")
+                    {
+                        SelectedPage = new UserViewModel();
+                    }
+                    else if (p.ToString() == "Shop")
+                    {
+                        SelectedPage = new ShopViewModel();
+                    }
+                    else if (p.ToString() == "Cart")
+                    {
+                        SelectedPage = new CartViewModel();
+                    }
+                    else if (p.ToString() == "Order History")
+                    {
+                        SelectedPage = new OrderHistoryViewModel();
+                    }
+                    else if (p.ToString() == "Settings")
                     {
                         SelectedPage = new SettingsViewModel();
                     }
-                    else if(p.ToString() == "Login")
+                    else if(p.ToString() == "Logout")
                     {
                         SelectedPage = new LoginViewModel();
                     }
