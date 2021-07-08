@@ -123,6 +123,26 @@
     <Resource Include="View\Images\github.png" />
     <Resource Include="View\Images\Icon1.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="View\Images\history_black_36dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\login_black_36dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\logout_black_36dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\person_black_36dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\settings_black_36dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\shopping_cart_black_36dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\storefront_black_36dp.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

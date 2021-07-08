@@ -17,6 +17,14 @@
         <vm:MainViewModel x:Name="vm"/>
     </Window.DataContext>
 
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+    </Window.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="140"/>
@@ -27,15 +35,13 @@
         <StackPanel Orientation="Vertical"
                     Background="LightSlateGray">
             
-            <!-- Profile Button -->
-            <Button x:Name="Login_button"
-                    BorderBrush="Transparent"
-                    Background="Transparent"
+            <!-- User Button -->
+            <Button x:Name="User_button"
                     Margin="5,10,5,5">
                 <StackPanel>
-                    <Image  Source="Images/icon1.png"
+                    <Image  Source="Images/person_black_36dp.png"
                             Stretch="None"/>
-                    <TextBlock  x:Name="Login_textblock"
+                    <TextBlock  x:Name="User_textblock"
                                 Text="Pokaż profil"
                                 HorizontalAlignment="Center"
                                 FontSize="20"/>
@@ -44,11 +50,9 @@
 
             <!-- Shop Button -->
             <Button x:Name="Shop_button"
-                    BorderBrush="Transparent"
-                    Background="Transparent"
                     Margin="5">
                 <StackPanel>
-                    <Image  Source="Images/icon1.png"
+                    <Image  Source="Images/storefront_black_36dp.png"
                             Stretch="None"/>
                     <TextBlock  x:Name="Shop_textblock"
                                 Text="Sklep"
@@ -59,26 +63,22 @@
 
             <!-- Cart Button -->
             <Button x:Name="Cart_button"
-                    BorderBrush="Transparent"
-                    Background="Transparent"
                     Margin="5">
                 <StackPanel>
-                    <Image  Source="Images/icon1.png"
+                    <Image  Source="Images/shopping_cart_black_36dp.png"
                             Stretch="None"/>
-                    <TextBlock  x:Name="Orders_textblock"
+                    <TextBlock  x:Name="Cart_textblock"
                                 Text="Koszyk"
                                 HorizontalAlignment="Center"
                                 FontSize="20"/>
                 </StackPanel>
             </Button>
 
-            <!-- Order HIstory Button -->
+            <!-- Order History Button -->
             <Button x:Name="Order_history_button"
-                    BorderBrush="Transparent"
-                    Background="Transparent"
                     Margin="5">
                 <StackPanel>
-                    <Image  Source="Images/icon1.png"
+                    <Image  Source="Images/history_black_36dp.png"
                             Stretch="None"/>
                     <TextBlock  x:Name="Order_history_textblock"
                                 Text="Historia"
@@ -89,12 +89,10 @@
 
             <!-- Settings Button -->
             <Button x:Name="Settings_button"
-                    BorderBrush="Transparent"
-                    Background="Transparent"
                     Margin="5"
                     Command="{Binding UptadeViewCommand}" CommandParameter="Settings">
                 <StackPanel>
-                    <Image  Source="Images/icon1.png"
+                    <Image  Source="Images/settings_black_36dp.png"
                             Stretch="None"/>
                     <TextBlock  x:Name="Settings_textblock"
                                 Text="Ustawienia"
@@ -105,12 +103,10 @@
 
             <!-- Logout Button -->
             <Button x:Name="Logout_button"
-                    BorderBrush="Transparent"
-                    Background="Transparent"
                     Margin="5"
                     Command="{Binding UptadeViewCommand}" CommandParameter="Login">
                 <StackPanel>
-                    <Image  Source="Images/icon1.png"
+                    <Image  Source="Images/logout_black_36dp.png"
                             Stretch="None"/>
                     <TextBlock  x:Name="Logout_textblock"
                                 Text="Wyloguj się"
@@ -122,8 +118,6 @@
         </StackPanel>
 
         <ContentControl Grid.Column="1" Content="{Binding SelectedPage}"/>
-
-        <!--views:LoginPage Grid.Column="1"/-->
 
     </Grid>
 </Window>
