@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Api.Model
 {
+    [Table("AspNetUsers")]
     public class User : IdentityUser
     {
         public virtual ICollection<Address> adresy { get; set; }

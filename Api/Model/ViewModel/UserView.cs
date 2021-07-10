@@ -23,10 +23,11 @@ namespace Api.Model.ViewModel
             //nazwisko = user.nazwisko;
             nr_tel = user.PhoneNumber;
             adresy = new List<AddressView>();
-            foreach(Address x in user.adresy)
-            {
-                adresy.Add(new AddressView(x));
-            }
+            if (user.adresy != null)
+                foreach (Address x in user.adresy)
+                {
+                    adresy.Add(new AddressView(x));
+                }
         }
     }
 }

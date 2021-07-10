@@ -31,9 +31,29 @@ namespace Api.Controllers
         }
 
         [HttpPost]
+        [Route("Test")]
+        [AllowAnonymous]
+        public async Task<ActionResult<UserView>> Make()
+        {
+            User u = new()
+            {
+                UserName = "name",
+                Email = "mail@adres.com"
+            };
+            IdentityResult r = await userManager.CreateAsync(u, "superSecret");
+            if (r.Succeeded)
+            {
+                db.Users.Add(u);
+                db.SaveChanges();
+                return new UserView(u);
+            }
+            return null;
+        }
+
+        [HttpPost]
         [Route("Login")]
         [AllowAnonymous]
-        public async Task<ActionResult<UserView>> Login([FromBody] string mail, [FromBody] string pass)
+        public async Task<ActionResult<UserView>> Login(string mail, string pass)
         {
             if (!ModelState.IsValid) return null;
             User u = await userManager.FindByEmailAsync(mail);
@@ -50,10 +70,9 @@ namespace Api.Controllers
         [HttpPost]
         [Route("Logout")]
         [Authorize]
-        public async Task<IActionResult> Logout()
+        public async void Logout()
         {
             await signInManager.SignOutAsync();
-            return null;
         }
     }
 }
