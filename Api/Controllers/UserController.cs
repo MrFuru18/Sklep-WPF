@@ -7,59 +7,72 @@ using System.Threading.Tasks;
 using Api.Model;
 using Microsoft.AspNetCore.Authorization;
 using Api.Model.ViewModel;
+using Microsoft.AspNetCore.Identity;
 
 namespace Api.Controllers
 {
     [ApiController]
     [Route("User")]
+    [Authorize]
     public class UserController : ControllerBase
     {
 
         private readonly ILogger<UserController> _logger;
         private readonly DB db;
+        private UserManager<User> userManager;
+        private SignInManager<User> signInManager;
 
-        public UserController(ILogger<UserController> logger,DB dbContext)
+        public UserController(ILogger<UserController> logger, DB dbContext, UserManager<User> userMgr, SignInManager<User> signMgr)
         {
             _logger = logger;
             db = dbContext;
+            userManager = userMgr;
+            signInManager = signMgr;
+        }
+
+        [HttpPost]
+        [Route("Test")]
+        [AllowAnonymous]
+        public async Task<ActionResult<UserView>> Make()
+        {
+            User u = new()
+            {
+                UserName = "name",
+                Email = "mail@adres.com"
+            };
+            IdentityResult r = await userManager.CreateAsync(u, "superSecret");
+            if (r.Succeeded)
+            {
+                db.Users.Add(u);
+                db.SaveChanges();
+                return new UserView(u);
+            }
+            return null;
         }
 
         [HttpPost]
         [Route("Login")]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public UserView Login([FromHeader]string mail, [FromHeader]string pass)
+        public async Task<ActionResult<UserView>> Login(string mail, string pass)
         {
-            User r = db.Users.Where(
-                x =>
-                    x.email == mail && pass == x.haslo
-                    )
-                .FirstOrDefault();
-            return new UserView()
+            if (!ModelState.IsValid) return null;
+            User u = await userManager.FindByEmailAsync(mail);
+            if (u == null) return null;
+            await signInManager.SignOutAsync();
+            Microsoft.AspNetCore.Identity.SignInResult x = await signInManager.PasswordSignInAsync(u, pass, false, false);
+            if (x.Succeeded)
             {
-                login = r.login,
-                email = r.email,
-                imie = r.imie,
-                nazwisko = r.nazwisko,
-                nr_tel = r.nr_tel,
-                adresy = r.adresy,
-                token = r.token
-            };
+                return new UserView(u);
+            }
+            return null;
         }
 
-
         [HttpPost]
-        [Route("Addresses")]
+        [Route("Logout")]
         [Authorize]
-        [ValidateAntiForgeryToken]
-        public IEnumerable<AddressView> GetAddresses([FromHeader]string login, [FromHeader]string token)
+        public async void Logout()
         {
-            return db.Users.Where(
-                x => 
-                    x.login == login && token == x.token
-                )
-                .FirstOrDefault()
-                .adresy as List<AddressView>;
+            await signInManager.SignOutAsync();
         }
     }
 }

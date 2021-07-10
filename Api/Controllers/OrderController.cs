@@ -7,60 +7,56 @@ using System.Threading.Tasks;
 using Api.Model;
 using Api.Model.ViewModel;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace Api.Controllers
 {
     [ApiController]
     [Route("Order")]
+    [Authorize]
     public class OrderController : Controller
     {
         private readonly ILogger<OrderController> _logger;
         private readonly DB db;
+        private UserManager<User> userManager;
 
-        public OrderController(ILogger<OrderController> logger,DB dbContext)
+        public OrderController(ILogger<OrderController> logger, DB dbContext, UserManager<User> userMgr)
         {
             _logger = logger;
             db = dbContext;
+            userManager = userMgr;
         }
 
         [HttpPost]
         [Route("make")]
-        [ValidateAntiForgeryToken]
-        public Order Make([FromHeader]Order order)
+        //[ValidateAntiForgeryToken]
+        [Authorize]
+        public async Task<ActionResult<OrderView>> Make([FromBody] OrderView order)
         {
+            //
+            throw new NotImplementedException();
+            //
+            User u = await userManager.GetUserAsync(HttpContext.User);
+            if (u == null) return null;
+            Order o = new();
             db.Database.BeginTransaction();
-            foreach(var item in order.pozycje)
-            {
-                Product current = db.Products.Where(x => x.id == item.produkt.id).FirstOrDefault();
-                current.dostepna_ilosc -= item.ilosc;
-                if(current.dostepna_ilosc<0)
-                {
-                    db.Database.RollbackTransaction();
-                    return null;
-                }
-            }
-            db.Orders.Add(order);
+            //To do
             db.Database.CommitTransaction();
-            db.SaveChanges();
-            return order;
+            return new OrderView(o);
         }
 
         [HttpGet]
         [Route("getAll")]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<OrderView>>> getMyOrders()
         {
-            return await db.Orders.Select(x => new OrderView()
-            {
-                id = x.id,
-                pozycje = x.pozycje.Select(p => new OrderItemView()
-                {
-                    ilosc = p.ilosc,
-                    cena_1 = p.cena_1,
-                    produkt_id = p.produkt.id
-                }).ToList(),
-                adres_id = x.adres.id,
-                data_zlozenia = x.data_zlozenia
-            }).ToListAsync();
+            User u = await userManager
+                .GetUserAsync(HttpContext.User);
+            if (u == null) return null;
+            return await db.Orders
+                .Where(x => x.user.Id == u.Id)
+                .Select(x=> new OrderView(x)).ToListAsync();
         }
     }
 }

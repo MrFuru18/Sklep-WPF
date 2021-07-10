@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Api.Model
 {
-    public class DB : DbContext
+    public class DB : IdentityDbContext<User>// DbContext
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Address> Addresses { get; set; }
@@ -18,12 +19,15 @@ namespace Api.Model
         public DB(DbContextOptions<DB> opt) : base(opt)
         {
             Database.Migrate();
+            //Database.EnsureDeleted();
+            //Database.EnsureCreated();
+            //SaveChanges();
         }
         public DB():base() {}
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<User>()
-                .HasKey(x => x.id);
+                .HasKey(x => x.Id);
 
             builder.Entity<Address>()
                 .HasKey(x => x.id);

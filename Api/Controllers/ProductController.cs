@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Api.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using Api.Model.ViewModel;
 
 namespace Api.Controllers
 {
@@ -24,7 +25,8 @@ namespace Api.Controllers
 
         [HttpPost]
         [Route("Add")]
-        public void addProduct([FromHeader]Product product)
+        [Authorize]
+        public void addProduct([FromBody] Product product)
         {
             db.Products.Add(product);
             db.SaveChanges();
@@ -33,16 +35,21 @@ namespace Api.Controllers
         [HttpGet]
         [Route("getAll")]
         [AllowAnonymous]
-        public async Task<ActionResult<IEnumerable<Product>>> getAllProducts()
+        public async Task<ActionResult<IEnumerable<ProductView>>> getAllProducts()
         {
-            return await db.Products.Select(x => new Product()
-            {
-                id = x.id,
-                nazwa = x.nazwa,
-                cena = x.cena,
-                dostepna_ilosc = x.dostepna_ilosc,
-                opis = x.opis
-            }).ToListAsync();
+            return await db.Products
+                .Select(x => new ProductView(x))
+                .ToListAsync();
+        }
+
+        [HttpGet]
+        [Route("getAllAuth")]
+        [Authorize]
+        public async Task<ActionResult<IEnumerable<ProductView>>> getProducts()
+        {
+            return await db.Products
+                .Select(x => new ProductView(x))
+                .ToListAsync();
         }
 
     }

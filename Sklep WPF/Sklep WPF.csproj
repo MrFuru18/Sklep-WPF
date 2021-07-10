@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -63,12 +66,17 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Model\Address.cs" />
-    <Compile Include="Model\Cart.cs" />
-    <Compile Include="Model\OrderItem.cs" />
-    <Compile Include="Model\Order.cs" />
-    <Compile Include="Model\Product.cs" />
-    <Compile Include="Model\User.cs" />
+    <Compile Include="DAL\Client.cs" />
+    <Compile Include="DAL\Encje\Address.cs" />
+    <Compile Include="DAL\Encje\Cart.cs" />
+    <Compile Include="DAL\Encje\OrderItem.cs" />
+    <Compile Include="DAL\Encje\Order.cs" />
+    <Compile Include="DAL\Encje\Product.cs" />
+    <Compile Include="DAL\Encje\User.cs" />
+    <Compile Include="DAL\Repozytoria\AddressRepo.cs" />
+    <Compile Include="DAL\Repozytoria\ProductRepo.cs" />
+    <Compile Include="DAL\Repozytoria\UserRepo.cs" />
+    <Compile Include="Model\Model.cs" />
     <Compile Include="ViewModel\BaseClass\RelayCommand.cs" />
     <Compile Include="ViewModel\BaseClass\ViewModelBase.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -95,6 +103,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

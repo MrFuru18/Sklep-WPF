@@ -16,5 +16,6 @@ namespace Api.Model
         public User user { get; set; }
         public Address adres { get; set; }
         public DateTime data_zlozenia { get; set; }
+        public OrderState Stan  { get; set; }
     }
 }
