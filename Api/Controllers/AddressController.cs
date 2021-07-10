@@ -36,8 +36,31 @@ namespace Api.Controllers
             User u = await userManager
                 .GetUserAsync(HttpContext.User);
             if (u == null) return null;
-            return u.adresy
+            return db.Users.Where(x => x.Id == u.Id).Select(x => x.adresy).FirstOrDefault()
                 .Select(x => new AddressView(x)).ToList();
+        }
+
+        [HttpPost]
+        [Route("addAddress")]
+        [Authorize]
+        public async Task<ActionResult<AddressView>> addAddress(AddressView addressView)
+        {
+            User u = await userManager
+                .GetUserAsync(HttpContext.User);
+            if (u == null) return null;
+            if (u.adresy == null) u.adresy = new List<Address>();
+            u.adresy.Add(new Address()
+            {
+                kod_pocztowy = addressView.kod_pocztowy,
+                miejscowosc = addressView.miejscowosc,
+                nr = addressView.nr,
+                nr_mieszkania = addressView.nr_mieszkania,
+                ulica = addressView.ulica
+            });
+            //db.Addresses.Add(u.adresy.Last());
+            //db.Users.Update(u);
+            db.SaveChanges();
+            return addressView;
         }
 
     }
