@@ -1,7 +1,9 @@
-﻿using Sklep_WPF.Model;
+﻿using Newtonsoft.Json;
+using Sklep_WPF.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,14 +11,23 @@ namespace Sklep_WPF.DAL.Repozytoria
 {
     static class UserRepo
     {
-        public static Task<User> Login(string email, string password)
+        public static async Task<User> Login(LoginModel login)
         {
-            throw new NotImplementedException();
+            User user = new User();
+            string serializedLogin = JsonConvert.SerializeObject(login);
+            HttpResponseMessage responseMessage = await Client.client
+                .PostAsync("User/Login", new StringContent(serializedLogin, Encoding.UTF8, "application/json"));
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                string jsonResult = await responseMessage.Content.ReadAsStringAsync();
+                user = JsonConvert.DeserializeObject<User>(jsonResult);
+            }
+            return user;
         }
 
         public static void Logout()
         {
-
+            Client.client.GetAsync("User/Logout");
         }
     }
 }
