@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Api.Model;
 using Microsoft.AspNetCore.Authorization;
 using Api.Model.ViewModel;
+using Microsoft.AspNetCore.Identity;
 
 namespace Api.Controllers
 {
@@ -17,49 +18,40 @@ namespace Api.Controllers
 
         private readonly ILogger<UserController> _logger;
         private readonly DB db;
+        private UserManager<User> userManager;
+        private SignInManager<User> signInManager;
 
-        public UserController(ILogger<UserController> logger,DB dbContext)
+        public UserController(ILogger<UserController> logger, DB dbContext, UserManager<User> userMgr, SignInManager<User> signMgr)
         {
             _logger = logger;
             db = dbContext;
+            userManager = userMgr;
+            signInManager = signMgr;
         }
 
         [HttpPost]
         [Route("Login")]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public UserView Login([FromHeader]string mail, [FromHeader]string pass)
+        public async Task<ActionResult<UserView>> Login([FromHeader] string mail, [FromHeader] string pass)
         {
-            User r = db.Users.Where(
-                x =>
-                    x.email == mail && pass == x.haslo
-                    )
-                .FirstOrDefault();
-            return new UserView()
+            if (!ModelState.IsValid) return null;
+            User u = await userManager.FindByEmailAsync(mail);
+            if (u == null) return null;
+            await signInManager.SignOutAsync();
+            Microsoft.AspNetCore.Identity.SignInResult x = await signInManager.PasswordSignInAsync(u, pass, false, false);
+            if(x.Succeeded)
             {
-                login = r.login,
-                email = r.email,
-                imie = r.imie,
-                nazwisko = r.nazwisko,
-                nr_tel = r.nr_tel,
-                adresy = r.adresy,
-                token = r.token
-            };
+                return new UserView(u);
+            }
+            return null;
         }
 
-
-        [HttpPost]
-        [Route("Addresses")]
         [Authorize]
-        [ValidateAntiForgeryToken]
-        public IEnumerable<AddressView> GetAddresses([FromHeader]string login, [FromHeader]string token)
+        public async Task<IActionResult> Logout()
         {
-            return db.Users.Where(
-                x => 
-                    x.login == login && token == x.token
-                )
-                .FirstOrDefault()
-                .adresy as List<AddressView>;
+            await signInManager.SignOutAsync();
+            return null;
         }
     }
 }
