@@ -7,16 +7,11 @@ using System.Threading.Tasks;
 
 namespace Sklep_WPF.DAL.Repozytoria
 {
-    static class UserRepo
+    static class AddressRepo
     {
-        public static Task<User> Login(string email, string password)
+        public static Task<List<Address>> getAddresses()
         {
             throw new NotImplementedException();
-        }
-
-        public static void Logout()
-        {
-
         }
     }
 }

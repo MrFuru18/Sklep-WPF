@@ -30,7 +30,7 @@ namespace Api.Controllers
 
         [HttpPost]
         [Route("make")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         [Authorize]
         public async Task<ActionResult<OrderView>> Make([FromBody] OrderView order)
         {
