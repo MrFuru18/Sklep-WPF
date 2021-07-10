@@ -13,6 +13,7 @@ namespace Api.Controllers
 {
     [ApiController]
     [Route("User")]
+    [Authorize]
     public class UserController : ControllerBase
     {
 
@@ -32,21 +33,22 @@ namespace Api.Controllers
         [HttpPost]
         [Route("Login")]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult<UserView>> Login([FromHeader] string mail, [FromHeader] string pass)
+        public async Task<ActionResult<UserView>> Login([FromBody] string mail, [FromBody] string pass)
         {
             if (!ModelState.IsValid) return null;
             User u = await userManager.FindByEmailAsync(mail);
             if (u == null) return null;
             await signInManager.SignOutAsync();
             Microsoft.AspNetCore.Identity.SignInResult x = await signInManager.PasswordSignInAsync(u, pass, false, false);
-            if(x.Succeeded)
+            if (x.Succeeded)
             {
                 return new UserView(u);
             }
             return null;
         }
 
+        [HttpPost]
+        [Route("Logout")]
         [Authorize]
         public async Task<IActionResult> Logout()
         {

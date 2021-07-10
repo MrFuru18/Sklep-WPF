@@ -28,7 +28,6 @@ namespace Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
             services.AddDbContext<DB>(opt => opt.UseSqlServer(@"Data Source=localhost;Initial Catalog=Baza;Integrated Security=True"));
             services.AddIdentity<User, IdentityRole>(opt => {

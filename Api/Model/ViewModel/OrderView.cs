@@ -11,6 +11,7 @@ namespace Api.Model.ViewModel
         public virtual ICollection<OrderItemView> pozycje { get; set; }
         public long adres_id { get; set; }
         public DateTime data_zlozenia { get; set; }
+        public OrderState Stan { get; set; }
 
         public OrderView(Order order)
         {
@@ -22,6 +23,7 @@ namespace Api.Model.ViewModel
             }
             adres_id = order.adres.id;
             data_zlozenia = order.data_zlozenia;
+            Stan = order.Stan;
         }
     }
 }

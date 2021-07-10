@@ -32,7 +32,7 @@ namespace Api.Controllers
         [Route("make")]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<ActionResult<OrderView>> Make([FromHeader] OrderView order)
+        public async Task<ActionResult<OrderView>> Make([FromBody] OrderView order)
         {
             //
             throw new NotImplementedException();

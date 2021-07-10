@@ -18,12 +18,15 @@ namespace Api.Model
         public DB(DbContextOptions<DB> opt) : base(opt)
         {
             Database.Migrate();
+            //Database.EnsureDeleted();
+            //Database.EnsureCreated();
+            //SaveChanges();
         }
         public DB():base() {}
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<User>()
-                .HasKey(x => x.id);
+                .HasKey(x => x.Id);
 
             builder.Entity<Address>()
                 .HasKey(x => x.id);

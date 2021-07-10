@@ -25,8 +25,8 @@ namespace Api.Controllers
 
         [HttpPost]
         [Route("Add")]
-        [Authorize("ShopAdmin")]
-        public void addProduct([FromHeader] Product product)
+        [Authorize]
+        public void addProduct([FromBody] Product product)
         {
             db.Products.Add(product);
             db.SaveChanges();
@@ -36,6 +36,16 @@ namespace Api.Controllers
         [Route("getAll")]
         [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<ProductView>>> getAllProducts()
+        {
+            return await db.Products
+                .Select(x => new ProductView(x))
+                .ToListAsync();
+        }
+
+        [HttpGet]
+        [Route("getAllAuth")]
+        [Authorize]
+        public async Task<ActionResult<IEnumerable<ProductView>>> getProducts()
         {
             return await db.Products
                 .Select(x => new ProductView(x))
