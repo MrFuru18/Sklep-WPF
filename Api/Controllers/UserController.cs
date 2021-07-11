@@ -55,16 +55,16 @@ namespace Api.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<UserView>> Login(LoginModel loginModel)
         {
-            if (!ModelState.IsValid) return null;
+            if (!ModelState.IsValid) return new BadRequestResult();
             User u = await userManager.FindByEmailAsync(loginModel.email);
-            if (u == null) return null;
+            if (u == null) return new EmptyResult();
             await signInManager.SignOutAsync();
             Microsoft.AspNetCore.Identity.SignInResult x = await signInManager.PasswordSignInAsync(u, loginModel.password, false, false);
             if (x.Succeeded)
             {
                 return new UserView(u);
             }
-            return null;
+            return new EmptyResult();
         }
 
         [HttpGet]

@@ -12,7 +12,7 @@ namespace Api.Model.ViewModel
         //public string imie { get; set; }
         //public string nazwisko { get; set; }
         public string nr_tel { get; set; }
-        public virtual ICollection<AddressView> adresy { get; set; }
+        //public virtual ICollection<AddressView> adresy { get; set; }
         //public string token { get; set; }
 
         public UserView(User user)
@@ -22,12 +22,12 @@ namespace Api.Model.ViewModel
             //imie = user.;
             //nazwisko = user.nazwisko;
             nr_tel = user.PhoneNumber;
-            adresy = new List<AddressView>();
-            if (user.adresy != null)
-                foreach (Address x in user.adresy)
-                {
-                    adresy.Add(new AddressView(x));
-                }
+            //adresy = new List<AddressView>();
+            //if (user.adresy != null)
+                //foreach (Address x in user.adresy)
+                //{
+                //    adresy.Add(new AddressView(x));
+                //}
         }
     }
 }

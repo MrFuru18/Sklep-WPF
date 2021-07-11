@@ -35,7 +35,7 @@ namespace Api.Controllers
         {
             User u = await userManager
                 .GetUserAsync(HttpContext.User);
-            if (u == null) return null;
+            if (u == null) return new BadRequestResult();
             return db.Users.Where(x => x.Id == u.Id).Select(x => x.adresy).FirstOrDefault()
                 .Select(x => new AddressView(x)).ToList();
         }
@@ -47,7 +47,7 @@ namespace Api.Controllers
         {
             User u = await userManager
                 .GetUserAsync(HttpContext.User);
-            if (u == null) return null;
+            if (u == null) return new BadRequestResult();
             if (u.adresy == null) u.adresy = new List<Address>();
             u.adresy.Add(new Address()
             {
