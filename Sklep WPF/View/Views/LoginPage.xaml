@@ -43,18 +43,16 @@
                        Margin="0,0,0,40"/>
 
                 <!-- Login TextBox -->
-            <TextBlock Text="Login"
+            <TextBlock Text="E-mail"
                        VerticalAlignment="Center"
                        FontSize="20"
                        Margin="0,0,0,5"/>
 
             <TextBox x:Name="Login_textbox"
-                     Text="Login"
                      Padding="5"
                      FontSize="20"
                      Width="300"
-                     VerticalAlignment="Center"
-                     Foreground="#777777"/>
+                     VerticalAlignment="Center"/>
 
             <!-- Password PasswordBox -->
             <TextBlock Text="Hasło"
@@ -66,12 +64,10 @@
                          Padding="5"
                          FontSize="20"
                          Width="300"
-                         VerticalAlignment="Center"
-                         Foreground="#777777"/>
+                         VerticalAlignment="Center"/>
 
             <!-- Login Button -->
-            <Button Foreground="Black"
-                    HorizontalAlignment="Center"
+            <Button HorizontalAlignment="Center"
                     Content="Zaloguj się"
                     FontSize="20"
                     Margin="0,30,0,0"
