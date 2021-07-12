@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Sklep_WPF"
              xmlns:views="clr-namespace:Sklep_WPF.View.Views"
-             xmlns:vm="clr-namespace:Sklep_WPF.ViewModel"
-             StartupUri="View/MainWindow.xaml">
+             xmlns:vm="clr-namespace:Sklep_WPF.ViewModel">
     <Application.Resources>
         <DataTemplate DataType="{x:Type vm:LoginViewModel}">
             <views:LoginPage/>
@@ -23,6 +22,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type vm:SettingsViewModel}">
             <views:SettingsPage/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:SignupViewModel}">
+            <views:SignupPage/>
         </DataTemplate>
     </Application.Resources>
 </Application>

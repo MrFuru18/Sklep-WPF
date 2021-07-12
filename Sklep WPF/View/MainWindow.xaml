@@ -13,10 +13,6 @@
         Width="1000"
         ResizeMode="NoResize">
 
-    <Window.DataContext>
-        <vm:MainViewModel x:Name="vm"/>
-    </Window.DataContext>
-
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
@@ -121,7 +117,7 @@
 
         </StackPanel>
 
-        <ContentControl Grid.Column="1" Content="{Binding SelectedPage}"/>
+        <ContentControl Grid.Column="1" Content="{Binding CurrentPage}"/>
 
     </Grid>
 </Window>

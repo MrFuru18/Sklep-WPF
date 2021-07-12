@@ -5,21 +5,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using Sklep_WPF.Navigation;
 
 namespace Sklep_WPF.ViewModel
 {
     using BaseClass;
     class MainViewModel : ViewModelBase
     {
-        private ViewModelBase _selectedPage = new LoginViewModel();
-        public ViewModelBase SelectedPage
+        private readonly Navigate _navigate;
+
+        public ViewModelBase CurrentPage => _navigate.CurrentPage;
+
+        public MainViewModel(Navigate navigate)
         {
-            get { return _selectedPage; }
-            set 
-            { 
-                _selectedPage = value;
-                onPropertyChanged(nameof(SelectedPage));
-            }
+            _navigate = navigate;
+            _navigate.CurrentPageChanged += OnCurrentPageChanged;
+        }
+
+        private void OnCurrentPageChanged()
+        {
+            onPropertyChanged(nameof(CurrentPage));
         }
 
         private ICommand _uptadeViewCommand;
@@ -31,27 +36,27 @@ namespace Sklep_WPF.ViewModel
                 {
                     if (p.ToString() == "User")
                     {
-                        SelectedPage = new UserViewModel();
+                        _navigate.CurrentPage = new UserViewModel();
                     }
                     else if (p.ToString() == "Shop")
                     {
-                        SelectedPage = new ShopViewModel();
+                        _navigate.CurrentPage = new ShopViewModel();
                     }
                     else if (p.ToString() == "Cart")
                     {
-                        SelectedPage = new CartViewModel();
+                        _navigate.CurrentPage = new CartViewModel();
                     }
                     else if (p.ToString() == "Order History")
                     {
-                        SelectedPage = new OrderHistoryViewModel();
+                        _navigate.CurrentPage = new OrderHistoryViewModel();
                     }
                     else if (p.ToString() == "Settings")
                     {
-                        SelectedPage = new SettingsViewModel();
+                        _navigate.CurrentPage = new SettingsViewModel();
                     }
                     else if(p.ToString() == "Logout")
                     {
-                        SelectedPage = new LoginViewModel();
+                        _navigate.CurrentPage = new LoginViewModel(_navigate);
                     }
 
 
