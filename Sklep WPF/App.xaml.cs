@@ -25,6 +25,7 @@ namespace Sklep_WPF
             {
                 DataContext = new MainViewModel(navigate)
             };
+
             MainWindow.Show();
 
             base.OnStartup(e);

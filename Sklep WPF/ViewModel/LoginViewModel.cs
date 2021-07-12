@@ -5,10 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Sklep_WPF.Navigation;
 using System.Windows.Input;
+using System.Windows;
 
 namespace Sklep_WPF.ViewModel
 {
     using BaseClass;
+    using System.Security;
+
     class LoginViewModel : ViewModelBase
     {
         private readonly Navigate _navigate;
@@ -26,6 +29,21 @@ namespace Sklep_WPF.ViewModel
             onPropertyChanged(nameof(CurrentPage));
         }
 
+        private string _email;
+        public string Email
+        {
+            get { return _email; }
+            set
+            {
+                _email = value;
+                onPropertyChanged(nameof(Email));
+            }
+        }
+
+        public SecureString SecurePassword { private get; set; }
+
+
+        //                                                                                  Login Button
         private ICommand _login;
         public ICommand Login
         {
@@ -33,12 +51,30 @@ namespace Sklep_WPF.ViewModel
             {
                 return _login ?? (_login= new RelayCommand((p) =>
                 {
-                    _navigate.CurrentPage = new UserViewModel();
+
+                    if (Email != null && Email != "" && SecurePassword != null)
+                    {
+                        /*
+                        //weryfikacja danych logowania
+                        if ()
+                        {
+                            _navigate.CurrentPage = new UserViewModel();
+                        }
+                        */
+
+                        MessageBox.Show("Email: " + Email + "\nPassword: " + SecurePassword);
+                        _navigate.CurrentPage = new UserViewModel();
+                    }
+                    else 
+                    {
+                        MessageBox.Show("Pola nie mogą być puste");
+                    }
                    
                 }, p => true));
             }
         }
 
+        //                                                                                  Signup Button
         private ICommand _signup;
         public ICommand Signup
         {

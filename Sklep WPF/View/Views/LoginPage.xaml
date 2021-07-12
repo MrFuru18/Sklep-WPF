@@ -42,17 +42,18 @@
                        HorizontalAlignment="Center"
                        Margin="0,0,0,40"/>
 
-                <!-- Login TextBox -->
+                <!-- Email TextBox -->
             <TextBlock Text="E-mail"
                        VerticalAlignment="Center"
                        FontSize="20"
                        Margin="0,0,0,5"/>
 
-            <TextBox x:Name="Login_textbox"
+            <TextBox x:Name="Email_textbox"
                      Padding="5"
                      FontSize="20"
                      Width="300"
-                     VerticalAlignment="Center"/>
+                     VerticalAlignment="Center"
+                     Text="{Binding Email}"/>
 
             <!-- Password PasswordBox -->
             <TextBlock Text="Hasło"
@@ -64,7 +65,8 @@
                          Padding="5"
                          FontSize="20"
                          Width="300"
-                         VerticalAlignment="Center"/>
+                         VerticalAlignment="Center"
+                         PasswordChanged="PasswordBox_PasswordChanged"/>
 
             <!-- Login Button -->
             <Button HorizontalAlignment="Center"
