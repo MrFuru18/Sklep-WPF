@@ -6,18 +6,22 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using Sklep_WPF.Navigation;
+using Sklep_WPF.CurrentSession;
 
 namespace Sklep_WPF.ViewModel
 {
     using BaseClass;
+
     class MainViewModel : ViewModelBase
     {
+        private readonly AccountStore _accountStore;
         private readonly Navigate _navigate;
 
         public ViewModelBase CurrentPage => _navigate.CurrentPage;
 
-        public MainViewModel(Navigate navigate)
+        public MainViewModel(AccountStore accountStore, Navigate navigate)
         {
+            _accountStore = accountStore;
             _navigate = navigate;
             _navigate.CurrentPageChanged += OnCurrentPageChanged;
         }
@@ -36,7 +40,7 @@ namespace Sklep_WPF.ViewModel
                 {
                     if (p.ToString() == "User")
                     {
-                        _navigate.CurrentPage = new UserViewModel();
+                        _navigate.CurrentPage = new UserViewModel(_accountStore);
                     }
                     else if (p.ToString() == "Shop")
                     {
@@ -56,7 +60,7 @@ namespace Sklep_WPF.ViewModel
                     }
                     else if(p.ToString() == "Logout")
                     {
-                        _navigate.CurrentPage = new LoginViewModel(_navigate);
+                        _navigate.CurrentPage = new LoginViewModel(_accountStore, _navigate);
                     }
 
 

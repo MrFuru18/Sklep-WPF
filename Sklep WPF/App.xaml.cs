@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using Sklep_WPF.ViewModel;
 using Sklep_WPF.Navigation;
+using Sklep_WPF.CurrentSession;
 
 namespace Sklep_WPF
 {
@@ -17,13 +18,14 @@ namespace Sklep_WPF
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            AccountStore accountStore = new AccountStore();
             Navigate navigate = new Navigate();
 
-            navigate.CurrentPage = new LoginViewModel(navigate);
+            navigate.CurrentPage = new LoginViewModel(accountStore, navigate);
 
             MainWindow = new MainWindow()
             {
-                DataContext = new MainViewModel(navigate)
+                DataContext = new MainViewModel(accountStore, navigate)
             };
 
             MainWindow.Show();

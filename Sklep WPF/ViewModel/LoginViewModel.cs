@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Sklep_WPF.Navigation;
 using System.Windows.Input;
+using System.Security;
 using System.Windows;
+using Sklep_WPF.Navigation;
 using Sklep_WPF.Model;
+using Sklep_WPF.CurrentSession;
 
 namespace Sklep_WPF.ViewModel
 {
     using BaseClass;
+    using Sklep_WPF.CurrentSession;
     using System.Security;
 
     class LoginViewModel : ViewModelBase
@@ -31,9 +34,9 @@ namespace Sklep_WPF.ViewModel
         public ICommand Login { get; }
         public ICommand Signup { get; }
 
-        public LoginViewModel(Navigate navigate)
+        public LoginViewModel(AccountStore accountStore, Navigate navigate)
         {
-            Login = new LoginCommand(this, navigate);
+            Login = new LoginCommand(this, accountStore, navigate);
             Signup = new NavigateCommand<SignupViewModel>(navigate, () => new SignupViewModel());
         }
 

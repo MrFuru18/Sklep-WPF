@@ -55,6 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CurrentSession\AccountStore.cs" />
+    <Compile Include="Model\Account.cs" />
     <Compile Include="Navigation\CommandBase.cs" />
     <Compile Include="Navigation\LoginCommand.cs" />
     <Compile Include="Navigation\Navigate.cs" />
