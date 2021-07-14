@@ -11,7 +11,7 @@ namespace Sklep_WPF.DAL.Repozytoria
 {
     static class OrderRepo
     {
-        public static async Task<List<Order>> getAllAddresses()
+        public static async Task<List<Order>> getAllOrders()
         {
             List<Order> lista = new List<Order>();
             HttpResponseMessage responseMessage = await ClientHttp.Client.GetAsync("Order/getAll");

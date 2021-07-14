@@ -17,8 +17,42 @@ namespace Sklep_WPF.Model
 
         public Model()
         {
-            List<Product> x = ProductRepo.getAllProtucts();
-            Products = ProductRepo.getAllProtucts();
+            getProducts();
+        }
+
+        public async void getProducts()
+        {
+            List<Product> products = await ProductRepo.getAllProtucts();
+            foreach (var x in products)
+            {
+                Products.Add(x);
+            }
+        }
+
+        public async void getAddresses()
+        {
+            List<Address> addresses = await AddressRepo.getAllAddresses();
+            foreach (var x in addresses)
+            {
+                Addresses.Add(x);
+            }
+        }
+
+        public async void getOrders()
+        {
+            if(LoggedInAccount!=null)
+            {
+                List<Order> orders = await OrderRepo.getAllOrders();
+                foreach (var x in orders)
+                {
+                    Orders.Add(x);
+                }
+            }
+        }
+
+        public async void Login(LoginModel loginModel)
+        {
+            LoggedInAccount = await UserRepo.Login(loginModel);
         }
     }
 }

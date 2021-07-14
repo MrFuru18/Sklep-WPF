@@ -13,7 +13,7 @@ namespace Sklep_WPF.DAL.Repozytoria
     {
         public static async Task<User> Login(LoginModel login)
         {
-            User user = new User();
+            User user = null;
             string serializedLogin = JsonConvert.SerializeObject(login);
             HttpResponseMessage responseMessage = await ClientHttp.Client
                 .PostAsync("User/Login", new StringContent(serializedLogin, Encoding.UTF8, "application/json"));
