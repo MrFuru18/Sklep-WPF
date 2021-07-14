@@ -8,13 +8,12 @@ namespace Sklep_WPF.Model
 {
     class User
     {
-        public long id { get; set; }
+        public string nazwa { get; set; }
         public string email { get; set; }
-        public string haslo { get; set; }
-        public string imie { get; set; }
-        public string nazwisko { get; set; }
         public string nr_tel { get; set; }
-        public virtual ICollection<Address> adresy { get; set; }
-        public string token { get; set; }
+        //public string imie { get; set; }
+        //public string nazwisko { get; set; }
+        //public virtual ICollection<Address> adresy { get; set; }
+        //public string token { get; set; }
     }
 }

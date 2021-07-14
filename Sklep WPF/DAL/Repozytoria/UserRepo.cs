@@ -15,7 +15,7 @@ namespace Sklep_WPF.DAL.Repozytoria
         {
             User user = new User();
             string serializedLogin = JsonConvert.SerializeObject(login);
-            HttpResponseMessage responseMessage = await Client.client
+            HttpResponseMessage responseMessage = await ClientHttp.Client
                 .PostAsync("User/Login", new StringContent(serializedLogin, Encoding.UTF8, "application/json"));
             if (responseMessage.IsSuccessStatusCode)
             {
@@ -27,7 +27,7 @@ namespace Sklep_WPF.DAL.Repozytoria
 
         public static void Logout()
         {
-            Client.client.GetAsync("User/Logout");
+            ClientHttp.Client.GetAsync("User/Logout");
         }
     }
 }
