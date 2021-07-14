@@ -9,5 +9,10 @@ namespace Sklep_WPF.Model
     class Cart
     {
         public virtual ICollection<OrderItem> pozycje { get; set; }
+
+        public Cart()
+        {
+            pozycje = new List<OrderItem>();
+        }
     }
 }

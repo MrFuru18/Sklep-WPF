@@ -53,21 +53,21 @@ namespace Api.Controllers
         [HttpPost]
         [Route("Login")]
         [AllowAnonymous]
-        public async Task<ActionResult<UserView>> Login(string mail, string pass)
+        public async Task<ActionResult<UserView>> Login(LoginModel loginModel)
         {
-            if (!ModelState.IsValid) return null;
-            User u = await userManager.FindByEmailAsync(mail);
-            if (u == null) return null;
+            if (!ModelState.IsValid) return new BadRequestResult();
+            User u = await userManager.FindByEmailAsync(loginModel.email);
+            if (u == null) return new EmptyResult();
             await signInManager.SignOutAsync();
-            Microsoft.AspNetCore.Identity.SignInResult x = await signInManager.PasswordSignInAsync(u, pass, false, false);
+            Microsoft.AspNetCore.Identity.SignInResult x = await signInManager.PasswordSignInAsync(u, loginModel.password, false, false);
             if (x.Succeeded)
             {
                 return new UserView(u);
             }
-            return null;
+            return new EmptyResult();
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("Logout")]
         [Authorize]
         public async void Logout()

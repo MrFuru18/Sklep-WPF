@@ -10,7 +10,8 @@ namespace Sklep_WPF.Model
     {
         public long id { get; set; }
         public virtual ICollection<OrderItem> pozycje { get; set; }
-        public Address adres { get; set; }
+        public long adres_id { get; set; }
         public DateTime data_zlozenia { get; set; }
+        public OrderState Stan { get; set; }
     }
 }

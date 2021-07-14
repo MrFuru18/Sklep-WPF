@@ -23,5 +23,6 @@ namespace Api.Model.ViewModel
             kod_pocztowy = address.kod_pocztowy;
             miejscowosc = address.miejscowosc;
         }
+        public AddressView() { }
     }
 }

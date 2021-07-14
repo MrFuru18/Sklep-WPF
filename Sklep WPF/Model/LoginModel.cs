@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Sklep_WPF.Model
 {
-    class OrderItem
+    public class LoginModel
     {
-        public long ilosc { get; set; }
-        public double cena_1 { get; set; }
-        public long produkt_id { get; set; }
+        public string email { get; set; }
+        public string password { get; set; }
     }
 }

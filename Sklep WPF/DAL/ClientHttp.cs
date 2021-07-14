@@ -8,16 +8,26 @@ using System.Threading.Tasks;
 
 namespace Sklep_WPF.DAL
 {
-    static class Client
+    class ClientHttp : HttpClient
     {
-        public static HttpClient client = new HttpClient();
+        private static ClientHttp client = null;
+        public static ClientHttp Client
+        {
+            get
+            {
+                if (client == null)
+                    client = new ClientHttp();
+                return client;
+            }
+        }
 
-        public static void config()
+        private ClientHttp() : base()
         {
             client.BaseAddress = new Uri("http://localhost:44306/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
         }
+
     }
 }
