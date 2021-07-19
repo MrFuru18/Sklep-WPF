@@ -66,9 +66,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DAL\Client.cs" />
+    <Compile Include="DAL\ClientHttp.cs" />
     <Compile Include="DAL\Encje\Address.cs" />
-    <Compile Include="DAL\Encje\Cart.cs" />
+    <Compile Include="DAL\Repozytoria\OrderRepo.cs" />
+    <Compile Include="Model\Cart.cs" />
     <Compile Include="DAL\Encje\OrderItem.cs" />
     <Compile Include="DAL\Encje\Order.cs" />
     <Compile Include="DAL\Encje\Product.cs" />
