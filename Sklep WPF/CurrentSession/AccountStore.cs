@@ -18,5 +18,7 @@ namespace Sklep_WPF.CurrentSession
                 _currentAccount = value;
             }
         }
+
+        public bool IsLoggedIn => _currentAccount != null;
     }
 }

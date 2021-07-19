@@ -18,17 +18,24 @@ namespace Sklep_WPF.ViewModel
         private readonly Navigate _navigate;
 
         public ViewModelBase CurrentPage => _navigate.CurrentPage;
+        public bool LoggedIn => _accountStore.IsLoggedIn;
+        public bool LoggedOut => !_accountStore.IsLoggedIn;
+
+        public ICommand LogoutCommand { get; }
 
         public MainViewModel(AccountStore accountStore, Navigate navigate)
         {
             _accountStore = accountStore;
             _navigate = navigate;
             _navigate.CurrentPageChanged += OnCurrentPageChanged;
+            LogoutCommand = new LogoutCommand(accountStore, navigate);
         }
 
         private void OnCurrentPageChanged()
         {
             onPropertyChanged(nameof(CurrentPage));
+            onPropertyChanged(nameof(LoggedIn));
+            onPropertyChanged(nameof(LoggedOut));
         }
 
         private ICommand _uptadeViewCommand;

@@ -59,6 +59,7 @@
     <Compile Include="Model\Account.cs" />
     <Compile Include="Navigation\CommandBase.cs" />
     <Compile Include="Navigation\LoginCommand.cs" />
+    <Compile Include="Navigation\LogoutCommand.cs" />
     <Compile Include="Navigation\Navigate.cs" />
     <Compile Include="Navigation\NavigateCommand.cs" />
     <Compile Include="ViewModel\CartViewModel.cs" />
