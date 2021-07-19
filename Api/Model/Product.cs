@@ -11,10 +11,11 @@ namespace Api.Model
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long id { get; set; }
+        public Guid id { get; set; }
         public string nazwa { get; set; }
         public double cena { get; set; }
         public long dostepna_ilosc { get; set; }
         public string opis { get; set; }
+        public virtual ICollection<Image> obrazy { get; set; }
     }
 }

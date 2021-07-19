@@ -9,7 +9,7 @@ namespace Api.Model.ViewModel
     {
         public long ilosc { get; set; }
         public double cena_1 { get; set; }
-        public long produkt_id { get; set; }
+        public Guid produkt_id { get; set; }
 
         public OrderItemView(OrderItem item)
         {

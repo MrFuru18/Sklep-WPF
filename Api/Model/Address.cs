@@ -11,7 +11,7 @@ namespace Api.Model
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long id { get; set; }
+        public Guid id { get; set; }
         public string ulica { get; set; }
         public long nr { get; set; }
         public long nr_mieszkania { get; set; }
