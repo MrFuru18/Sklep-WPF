@@ -102,6 +102,20 @@
             </Button>
 
             <!-- Logout Button -->
+            <Button x:Name="Login_button"
+                    Margin="5"
+                    Command="{Binding UptadeViewCommand}" CommandParameter="Login">
+                <StackPanel>
+                    <Image  Source="Images/login_black_36dp.png"
+                            Stretch="None"/>
+                    <TextBlock  x:Name="Login_textblock"
+                                Text="Zaloguj się"
+                                HorizontalAlignment="Center"
+                                FontSize="20"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Logout Button -->
             <Button x:Name="Logout_button"
                     Margin="5"
                     Command="{Binding UptadeViewCommand}" CommandParameter="Logout">

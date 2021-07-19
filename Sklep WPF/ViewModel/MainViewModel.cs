@@ -58,6 +58,10 @@ namespace Sklep_WPF.ViewModel
                     {
                         _navigate.CurrentPage = new SettingsViewModel();
                     }
+                    else if (p.ToString() == "Login")
+                    {
+                        _navigate.CurrentPage = new LoginViewModel(_accountStore, _navigate);
+                    }
                     else if(p.ToString() == "Logout")
                     {
                         _navigate.CurrentPage = new LoginViewModel(_accountStore, _navigate);
