@@ -7,7 +7,7 @@ namespace Api.Model.ViewModel
 {
     public class ProductView
     {
-        public long id { get; set; }
+        public Guid id { get; set; }
         public string nazwa { get; set; }
         public double cena { get; set; }
         public long dostepna_ilosc { get; set; }

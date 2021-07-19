@@ -11,7 +11,7 @@ namespace Api.Model
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long id { get; set; }
+        public Guid id { get; set; }
         public virtual ICollection<OrderItem> pozycje { get; set; }
         public User user { get; set; }
         public Address adres { get; set; }
