@@ -10,17 +10,84 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="4*"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
         
         <TextBlock Text="Profil"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="3"
                    HorizontalAlignment="Center"
                    FontSize="30"
                    Margin="0,10,0,0"/>
+
+        <!-- Email TextBlock -->
+        <TextBlock Grid.Row="2"
+                   Grid.Column="0"
+                   HorizontalAlignment="Right"
+                   FontSize="20"
+                   Margin="0,10,0,0"
+                   Text="E-mail:"/>
         
-        <TextBlock Grid.Row="1"
-                   HorizontalAlignment="Center"
-                   FontSize="30"
+        <TextBlock Grid.Row="2"
+                   Grid.Column="2"
+                   HorizontalAlignment="Left"
+                   FontSize="20"
                    Margin="0,10,0,0"
                    Text="{Binding Email}"/>
+
+        <!-- Name TextBlock -->
+        <TextBlock Grid.Row="3"
+                   Grid.Column="0"
+                   HorizontalAlignment="Right"
+                   FontSize="20"
+                   Margin="0,10,0,0"
+                   Text="Imię:"/>
+
+        <TextBlock Grid.Row="3"
+                   Grid.Column="2"
+                   HorizontalAlignment="Left"
+                   FontSize="20"
+                   Margin="0,10,0,0"
+                   Text="{Binding Name}"/>
+
+        <!-- Surname TextBlock -->
+        <TextBlock Grid.Row="4"
+                   Grid.Column="0"
+                   HorizontalAlignment="Right"
+                   FontSize="20"
+                   Margin="0,10,0,0"
+                   Text="Nazwisko:"/>
+
+        <TextBlock Grid.Row="4"
+                   Grid.Column="2"
+                   HorizontalAlignment="Left"
+                   FontSize="20"
+                   Margin="0,10,0,0"
+                   Text="{Binding Surname}"/>
+
+        <!-- Address TextBlock -->
+        <TextBlock Grid.Row="5"
+                   Grid.Column="0"
+                   HorizontalAlignment="Right"
+                   FontSize="20"
+                   Margin="0,10,0,0"
+                   Text="Adres:"/>
+
+        <TextBlock Grid.Row="5"
+                   Grid.Column="2"
+                   HorizontalAlignment="Left"
+                   FontSize="20"
+                   Margin="0,10,0,0"
+                   Text="{Binding Address}"/>
+
     </Grid>
 </UserControl>
