@@ -12,18 +12,23 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Sklep_WPF.ViewModel;
 
-namespace Sklep_WPF
+namespace Sklep_WPF.View.Views
 {
     /// <summary>
-    /// Logika interakcji dla klasy MainWindow.xaml
+    /// Logika interakcji dla klasy LoginPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class LoginPage : UserControl
     {
-        public MainWindow()
+        public LoginPage()
         {
             InitializeComponent();
+        }
+
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (this.DataContext != null)
+            { ((dynamic)this.DataContext).SecurePassword = ((PasswordBox)sender).SecurePassword; }
         }
     }
 }

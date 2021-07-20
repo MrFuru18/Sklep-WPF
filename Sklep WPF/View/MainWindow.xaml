@@ -3,17 +3,140 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Sklep_WPF"
         
+        xmlns:local="clr-namespace:Sklep_WPF"
+        xmlns:views="clr-namespace:Sklep_WPF.View.Views"
         xmlns:vm="clr-namespace:Sklep_WPF.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="App" 
+        Height="600" 
+        Width="1000"
+        ResizeMode="NoResize">
 
-    <Window.DataContext>
-        <vm:MainViewModel x:Name="vm"/>
-    </Window.DataContext>
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Window.Resources>
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="140"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Side Menu-->
+        <StackPanel Orientation="Vertical"
+                    Background="LightSlateGray">
+            
+            <!-- User Button -->
+            <Button x:Name="User_button"
+                    Margin="5,10,5,5"
+                    Command="{Binding UptadeViewCommand}" CommandParameter="User"
+                    Visibility="{Binding LoggedIn, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <StackPanel>
+                    <Image  Source="Images/person_black_36dp.png"
+                            Stretch="None"/>
+                    <TextBlock  x:Name="User_textblock"
+                                Text="Pokaż profil"
+                                HorizontalAlignment="Center"
+                                FontSize="20"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Shop Button -->
+            <Button x:Name="Shop_button"
+                    Margin="5"
+                    Command="{Binding UptadeViewCommand}" CommandParameter="Shop">
+                <StackPanel>
+                    <Image  Source="Images/storefront_black_36dp.png"
+                            Stretch="None"/>
+                    <TextBlock  x:Name="Shop_textblock"
+                                Text="Sklep"
+                                HorizontalAlignment="Center"
+                                FontSize="20"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Cart Button -->
+            <Button x:Name="Cart_button"
+                    Margin="5"
+                    Command="{Binding UptadeViewCommand}" CommandParameter="Cart">
+                <StackPanel>
+                    <Image  Source="Images/shopping_cart_black_36dp.png"
+                            Stretch="None"/>
+                    <TextBlock  x:Name="Cart_textblock"
+                                Text="Koszyk"
+                                HorizontalAlignment="Center"
+                                FontSize="20"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Order History Button -->
+            <Button x:Name="Order_history_button"
+                    Margin="5"
+                    Command="{Binding UptadeViewCommand}" CommandParameter="Order History"
+                    Visibility="{Binding LoggedIn, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <StackPanel>
+                    <Image  Source="Images/history_black_36dp.png"
+                            Stretch="None"/>
+                    <TextBlock  x:Name="Order_history_textblock"
+                                Text="Historia"
+                                HorizontalAlignment="Center"
+                                FontSize="20"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Settings Button -->
+            <Button x:Name="Settings_button"
+                    Margin="5"
+                    Command="{Binding UptadeViewCommand}" CommandParameter="Settings">
+                <StackPanel>
+                    <Image  Source="Images/settings_black_36dp.png"
+                            Stretch="None"/>
+                    <TextBlock  x:Name="Settings_textblock"
+                                Text="Ustawienia"
+                                HorizontalAlignment="Center"
+                                FontSize="20"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Login Button -->
+            <Button x:Name="Login_button"
+                    Margin="5"
+                    Command="{Binding UptadeViewCommand}" CommandParameter="Login"
+                    Visibility="{Binding LoggedOut, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <StackPanel>
+                    <Image  Source="Images/login_black_36dp.png"
+                            Stretch="None"/>
+                    <TextBlock  x:Name="Login_textblock"
+                                Text="Zaloguj się"
+                                HorizontalAlignment="Center"
+                                FontSize="20"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Logout Button -->
+            <Button x:Name="Logout_button"
+                    Margin="5"
+                    Command="{Binding LogoutCommand}" CommandParameter="Logout"
+                    Visibility="{Binding LoggedIn, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <StackPanel>
+                    <Image  Source="Images/logout_black_36dp.png"
+                            Stretch="None"/>
+                    <TextBlock  x:Name="Logout_textblock"
+                                Text="Wyloguj się"
+                                HorizontalAlignment="Center"
+                                FontSize="20"/>
+                </StackPanel>
+            </Button>
+
+        </StackPanel>
+
+        <ContentControl Grid.Column="1" Content="{Binding CurrentPage}"/>
+
     </Grid>
 </Window>

@@ -5,6 +5,9 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Sklep_WPF.ViewModel;
+using Sklep_WPF.Navigation;
+using Sklep_WPF.CurrentSession;
 
 namespace Sklep_WPF
 {
@@ -13,5 +16,21 @@ namespace Sklep_WPF
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            AccountStore accountStore = new AccountStore();
+            Navigate navigate = new Navigate();
+
+            navigate.CurrentPage = new LoginViewModel(accountStore, navigate);
+
+            MainWindow = new MainWindow()
+            {
+                DataContext = new MainViewModel(accountStore, navigate)
+            };
+
+            MainWindow.Show();
+
+            base.OnStartup(e);
+        }
     }
 }

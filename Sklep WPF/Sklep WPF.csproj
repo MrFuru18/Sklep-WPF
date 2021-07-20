@@ -58,6 +58,41 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CurrentSession\AccountStore.cs" />
+    <Compile Include="Model\Account.cs" />
+    <Compile Include="Navigation\CommandBase.cs" />
+    <Compile Include="Navigation\LoginCommand.cs" />
+    <Compile Include="Navigation\LogoutCommand.cs" />
+    <Compile Include="Navigation\Navigate.cs" />
+    <Compile Include="Navigation\NavigateCommand.cs" />
+    <Compile Include="ViewModel\CartViewModel.cs" />
+    <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\OrderHistoryViewModel.cs" />
+    <Compile Include="ViewModel\SettingsViewModel.cs" />
+    <Compile Include="ViewModel\ShopViewModel.cs" />
+    <Compile Include="ViewModel\SignupViewModel.cs" />
+    <Compile Include="ViewModel\UserViewModel.cs" />
+    <Compile Include="View\Views\CartPage.xaml.cs">
+      <DependentUpon>CartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Views\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Views\OrderHistoryPage.xaml.cs">
+      <DependentUpon>OrderHistoryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Views\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Views\ShopPage.xaml.cs">
+      <DependentUpon>ShopPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Views\SignupPage.xaml.cs">
+      <DependentUpon>SignupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Views\UserPage.xaml.cs">
+      <DependentUpon>UserPage.xaml</DependentUpon>
+    </Compile>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -87,6 +122,34 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\Views\CartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Views\LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Views\OrderHistoryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Views\SettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Views\ShopPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Views\SignupPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Views\UserPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -120,8 +183,25 @@
     <Resource Include="View\Images\Icon1.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Images\IconBig.png" />
+    <Resource Include="View\Images\history_black_36dp.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="View\Images\login_black_36dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\logout_black_36dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\person_black_36dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\settings_black_36dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\shopping_cart_black_36dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\storefront_black_36dp.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
