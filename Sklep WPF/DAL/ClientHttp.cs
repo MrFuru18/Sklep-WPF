@@ -8,25 +8,27 @@ using System.Threading.Tasks;
 
 namespace Sklep_WPF.DAL
 {
-    class ClientHttp : HttpClient
+    class ClientHttp// : HttpClient
     {
-        private static ClientHttp client = null;
-        public static ClientHttp Client
+        private static HttpClient client = null;
+        public static HttpClient Client
         {
             get
             {
                 if (client == null)
-                    client = new ClientHttp();
+                {
+                    client = new HttpClient();
+                    client.BaseAddress = new Uri("http://localhost:44306/");
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(
+                        new MediaTypeWithQualityHeaderValue("application/json"));
+                }
                 return client;
             }
         }
 
-        private ClientHttp() : base()
+        private ClientHttp()
         {
-            client.BaseAddress = new Uri("http://localhost:44306/");
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
     }
