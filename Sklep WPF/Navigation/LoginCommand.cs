@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Sklep_WPF.DAL.Repozytoria;
 
 namespace Sklep_WPF.Navigation
 {
@@ -24,13 +25,13 @@ namespace Sklep_WPF.Navigation
         }
         public override void Execute(object p)
         {
-            Account account = new Account()
+            LoginModel account = new LoginModel()
             {
-                Email = _viewModel.Email,
-                Password = _viewModel.SecurePassword
+                email = _viewModel.Email,
+                password = _viewModel.Password
             };
 
-            _accountStore.CurrentAccount = account;
+            _accountStore.CurrentAccount = UserRepo.Login(account).Result;
 
             _navigate.CurrentPage = new UserViewModel(_accountStore);
         }

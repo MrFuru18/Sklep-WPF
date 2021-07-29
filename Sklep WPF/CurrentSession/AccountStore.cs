@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace Sklep_WPF.CurrentSession
 {
+    using Model;
     class AccountStore
     {
-        private Account _currentAccount;
-        public Account CurrentAccount
+        private User _currentAccount;
+        public User CurrentAccount
         {
             get => _currentAccount;
             set

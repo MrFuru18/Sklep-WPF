@@ -28,7 +28,7 @@ namespace Sklep_WPF.View.Views
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
             if (this.DataContext != null)
-            { ((dynamic)this.DataContext).SecurePassword = ((PasswordBox)sender).SecurePassword; }
+            { ((dynamic)this.DataContext).Password = ((PasswordBox)sender).Password; }
         }
     }
 }

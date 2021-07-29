@@ -14,7 +14,8 @@ namespace Sklep_WPF.ViewModel
     {
         private readonly AccountStore _accountStore;
 
-        public string Email => _accountStore.CurrentAccount?.Email;
+
+        public string Email => _accountStore.CurrentAccount?.email;
         public string Name;
         public string Surname;
         public string Address;
