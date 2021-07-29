@@ -29,7 +29,7 @@ namespace Sklep_WPF.ViewModel
             }
         }
 
-        public SecureString SecurePassword { private get; set; }
+        public SecureString SecurePassword { get; set; }
 
         public ICommand Login { get; }
         public ICommand Signup { get; }

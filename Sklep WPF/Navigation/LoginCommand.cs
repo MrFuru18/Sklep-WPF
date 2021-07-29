@@ -26,7 +26,8 @@ namespace Sklep_WPF.Navigation
         {
             Account account = new Account()
             {
-                Email = _viewModel.Email
+                Email = _viewModel.Email,
+                Password = _viewModel.SecurePassword
             };
 
             _accountStore.CurrentAccount = account;
