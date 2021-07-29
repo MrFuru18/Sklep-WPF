@@ -14,7 +14,7 @@ namespace Sklep_WPF.DAL.Repozytoria
         public static async Task<List<Address>> getAllAddresses()
         {
             List<Address> lista = new List<Address>();
-            HttpResponseMessage responseMessage = await ClientHttp.Client.GetAsync("Address/getAll");
+            HttpResponseMessage responseMessage = await ClientHttp.Client.GetAsync("Address/getAll").ConfigureAwait(false);
             if (responseMessage.IsSuccessStatusCode)
             {
                 string jsonResult = await responseMessage.Content.ReadAsStringAsync();
@@ -28,7 +28,7 @@ namespace Sklep_WPF.DAL.Repozytoria
             Address result = null;
             string serializedAddress = JsonConvert.SerializeObject(address);
             HttpResponseMessage responseMessage = await ClientHttp.Client
-                .PostAsync("Address/addAddress", new StringContent(serializedAddress, Encoding.UTF8, "application/json"));
+                .PostAsync("Address/addAddress", new StringContent(serializedAddress, Encoding.UTF8, "application/json")).ConfigureAwait(false);
             if (responseMessage.IsSuccessStatusCode)
             {
                 string jsonResult = await responseMessage.Content.ReadAsStringAsync();

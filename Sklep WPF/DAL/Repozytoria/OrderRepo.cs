@@ -14,7 +14,7 @@ namespace Sklep_WPF.DAL.Repozytoria
         public static async Task<List<Order>> getAllOrders()
         {
             List<Order> lista = new List<Order>();
-            HttpResponseMessage responseMessage = await ClientHttp.Client.GetAsync("Order/getAll");
+            HttpResponseMessage responseMessage = await ClientHttp.Client.GetAsync("Order/getAll").ConfigureAwait(false);
             if (responseMessage.IsSuccessStatusCode)
             {
                 string jsonResult = await responseMessage.Content.ReadAsStringAsync();
@@ -28,7 +28,7 @@ namespace Sklep_WPF.DAL.Repozytoria
             Order result = null;
             string serializedAddress = JsonConvert.SerializeObject(order);
             HttpResponseMessage responseMessage = await ClientHttp.Client
-                .PostAsync("Order/makeOrder", new StringContent(serializedAddress, Encoding.UTF8, "application/json"));
+                .PostAsync("Order/makeOrder", new StringContent(serializedAddress, Encoding.UTF8, "application/json")).ConfigureAwait(false);
             if (responseMessage.IsSuccessStatusCode)
             {
                 string jsonResult = await responseMessage.Content.ReadAsStringAsync();
@@ -42,7 +42,7 @@ namespace Sklep_WPF.DAL.Repozytoria
             Order result = null;
             string serializedAddress = JsonConvert.SerializeObject(order);
             HttpResponseMessage responseMessage = await ClientHttp.Client
-                .PostAsync("Order/confirmOrder", new StringContent(serializedAddress, Encoding.UTF8, "application/json"));
+                .PostAsync("Order/confirmOrder", new StringContent(serializedAddress, Encoding.UTF8, "application/json")).ConfigureAwait(false);
             if (responseMessage.IsSuccessStatusCode)
             {
                 string jsonResult = await responseMessage.Content.ReadAsStringAsync();
