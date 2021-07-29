@@ -25,7 +25,7 @@ namespace Sklep_WPF.ViewModel
             product2.nazwa = "produkt2";
             product2.cena = 102.99;
             product2.dostepna_ilosc = 120;
-            product2.opis = "Opis produktu";
+            product2.opis = "Bardzo długi i szczegółowy opis produktu niemieszczący się w jednym wierszu";
 
 
             Product product3 = new Product();
@@ -50,7 +50,7 @@ namespace Sklep_WPF.ViewModel
             product6.nazwa = "produkt6";
             product6.cena = 75.99;
             product6.dostepna_ilosc = 120;
-            product3.opis = "Opis produktu";
+            product6.opis = "Opis produktu";
 
             Product product7 = new Product();
             product7.nazwa = "produkt7";
