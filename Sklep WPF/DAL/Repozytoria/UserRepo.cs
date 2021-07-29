@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,8 +16,9 @@ namespace Sklep_WPF.DAL.Repozytoria
         {
             User user = null;
             string serializedLogin = JsonConvert.SerializeObject(login);
-            HttpResponseMessage responseMessage = await ClientHttp.Client
-                .PostAsync("User/Login", new StringContent(serializedLogin, Encoding.UTF8, "application/json"));
+            HttpRequestMessage req = new HttpRequestMessage(HttpMethod.Post, "User/Login");
+            req.Content = new StringContent(JsonConvert.SerializeObject(login), Encoding.UTF8, "application/json");
+            HttpResponseMessage responseMessage = await ClientHttp.Client.SendAsync(req).ConfigureAwait(false);
             if (responseMessage.IsSuccessStatusCode)
             {
                 string jsonResult = await responseMessage.Content.ReadAsStringAsync();

@@ -32,7 +32,6 @@ namespace Sklep_WPF.Navigation
             };
 
             _accountStore.CurrentAccount = UserRepo.Login(account).Result;
-
             _navigate.CurrentPage = new UserViewModel(_accountStore);
         }
     }

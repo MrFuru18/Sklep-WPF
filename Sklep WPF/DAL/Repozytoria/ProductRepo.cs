@@ -13,9 +13,10 @@ namespace Sklep_WPF.DAL.Repozytoria
     {
         public static async Task<List<Product>> getAllProtucts()
         {
+            HttpRequestMessage req = new HttpRequestMessage(HttpMethod.Get, "Product/getAll");
             List<Product> lista = new List<Product>();
-            HttpResponseMessage responseMessage = await ClientHttp.Client.GetAsync("Product/getAll");
-            if(responseMessage.IsSuccessStatusCode)
+            HttpResponseMessage responseMessage = await ClientHttp.Client.SendAsync(req);
+            if (responseMessage.IsSuccessStatusCode)
             {
                 string jsonResult = await responseMessage.Content.ReadAsStringAsync();
                 lista = JsonConvert.DeserializeObject<List<Product>>(jsonResult);
