@@ -98,14 +98,14 @@
                             </StackPanel>
                             <StackPanel Grid.Column="2">
                                 <TextBlock Text="Cena: "/>
-                                <TextBlock Text="Ilość: "/>
+                                <!--TextBlock Text="Ilość: "/-->
                             </StackPanel>
                             <StackPanel Grid.Column="3">
                                 <TextBlock Text="{Binding cena}"/>
-                                <TextBox x:Name="Quantity_textbox"
+                                <!--TextBox x:Name="Quantity_textbox"
                                          HorizontalAlignment="Left"
                                          Width="40"
-                                         Text="{Binding Quantity}"/>
+                                         Text="{Binding DataContext.Quantity, RelativeSource={RelativeSource AncestorType=ListView}}"/-->
                             </StackPanel>
                             <!-- Add to Cart Button -->
                             <Button Grid.Row="2"
@@ -120,7 +120,8 @@
                                     Content="Dodaj do koszyka"
                                     FontSize="20"
                                     Margin="0,0,0,10"
-                                    Command="{Binding AddToCart}"/>
+                                    Command="{Binding DataContext.AddToCart, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                    CommandParameter="{Binding}"/>
                         </Grid>
                     </Border>
                 </DataTemplate>

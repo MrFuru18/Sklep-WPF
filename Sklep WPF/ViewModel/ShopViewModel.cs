@@ -4,10 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Sklep_WPF.Model;
+using System.Windows.Input;
+using System.Windows;
 
 namespace Sklep_WPF.ViewModel
 {
     using BaseClass;
+
     class ShopViewModel : ViewModelBase
     {
         public List<Product> products { get; set; }
@@ -73,12 +76,27 @@ namespace Sklep_WPF.ViewModel
             products.Add(product7);
             products.Add(product8);
 
-           
         }
-        /*public Guid id { get; set; }
-        public string nazwa { get; set; }
-        public double cena { get; set; }
-        public long dostepna_ilosc { get; set; }
-        public string opis { get; set; }*/
+
+        //public string Quantity { get; set; }
+
+        
+        private ICommand _addToCart;
+        public ICommand AddToCart
+        {
+            get
+            {
+                return _addToCart ?? (_addToCart = new RelayCommand((p) =>
+                {
+                    Product selectedProduct = new Product();
+                    selectedProduct = (Product)p;
+                    MessageBox.Show("Clicked on " + selectedProduct.nazwa/* + "\nQuantity: " + Quantity*/);
+                    //Quantity = null;
+
+                }, p => true));
+            }
+        }
+
+
     }
 }
