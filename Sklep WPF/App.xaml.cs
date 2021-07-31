@@ -19,13 +19,14 @@ namespace Sklep_WPF
         protected override void OnStartup(StartupEventArgs e)
         {
             AccountStore accountStore = new AccountStore();
+            ProductStore productStore = new ProductStore();
             Navigate navigate = new Navigate();
 
             navigate.CurrentPage = new LoginViewModel(accountStore, navigate);
 
             MainWindow = new MainWindow()
             {
-                DataContext = new MainViewModel(accountStore, navigate)
+                DataContext = new MainViewModel(accountStore, productStore, navigate)
             };
 
             MainWindow.Show();

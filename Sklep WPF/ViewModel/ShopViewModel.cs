@@ -6,16 +6,23 @@ using System.Threading.Tasks;
 using Sklep_WPF.Model;
 using System.Windows.Input;
 using System.Windows;
+using System.Collections.ObjectModel;
 
 namespace Sklep_WPF.ViewModel
 {
     using BaseClass;
+    using Sklep_WPF.CurrentSession;
 
     class ShopViewModel : ViewModelBase
     {
+        private readonly ProductStore _productStore;
         public List<Product> products { get; set; }
-        public ShopViewModel()
+
+
+        public ShopViewModel(ProductStore productStore)
         {
+            _productStore = productStore;
+
             products = new List<Product>();
             Product product1 = new Product();
             product1.nazwa = "produkt1";
@@ -78,9 +85,10 @@ namespace Sklep_WPF.ViewModel
 
         }
 
+
         //public string Quantity { get; set; }
 
-        
+
         private ICommand _addToCart;
         public ICommand AddToCart
         {
@@ -90,6 +98,7 @@ namespace Sklep_WPF.ViewModel
                 {
                     Product selectedProduct = new Product();
                     selectedProduct = (Product)p;
+                    _productStore.AddProduct(selectedProduct);
                     MessageBox.Show("Clicked on " + selectedProduct.nazwa/* + "\nQuantity: " + Quantity*/);
                     //Quantity = null;
 
