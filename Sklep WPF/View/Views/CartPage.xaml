@@ -7,9 +7,83 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="860">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
         <TextBlock Text="Koszyk"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="3"
                    HorizontalAlignment="Center"
                    FontSize="30"
                    Margin="0,10,0,0"/>
+
+        <!-- Products -->
+        <ListView Grid.Row="1"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="3"
+                  Height="410"
+                  Width="820"
+                  VerticalAlignment="Top"
+                  HorizontalAlignment="Center"
+                  FontSize="20"
+                  Margin="0,10,0,0"
+                  ItemsSource="{Binding products}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderThickness="1" BorderBrush="LightGray">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="155"/>
+                                <ColumnDefinition Width="460"/>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="116"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="140"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Column="0" Text="{Binding nazwa}" TextWrapping="Wrap"/>
+                            <StackPanel Grid.Column="1">
+                                <TextBlock Text="{Binding opis}" TextWrapping="Wrap"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2">
+                                <TextBlock Text="Cena: "/>
+                                <!--TextBlock Text="Ilość: "/-->
+                            </StackPanel>
+                            <StackPanel Grid.Column="3">
+                                <TextBlock Text="{Binding cena}"/>
+                                <!--TextBox x:Name="Quantity_textbox"
+                                         HorizontalAlignment="Left"
+                                         Width="40"
+                                         Text="{Binding DataContext.Quantity, RelativeSource={RelativeSource AncestorType=ListView}}"/-->
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!-- Place Order Button -->
+        <Button Grid.Row="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Center"
+                Padding="5"
+                BorderBrush="Black"
+                BorderThickness="1"
+                Background="LightGray"
+                Content="Złóż Zamówienie"
+                FontSize="20"
+                Margin="0,0,0,10"
+                Command="{Binding PlaceOrder}"/>
     </Grid>
 </UserControl>
