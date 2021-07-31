@@ -19,7 +19,6 @@ namespace Sklep_WPF.ViewModel
         public CartViewModel(ProductStore productStore)
         {
             _productStore = productStore;
-            products = new List<Product>();
 
             products = _productStore.products;
         }
