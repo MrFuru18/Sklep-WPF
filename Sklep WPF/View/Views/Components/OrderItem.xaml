@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="Sklep_WPF.View.Views.Components.OrderItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Sklep_WPF.View.Views.Components"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="300">
+    <Grid>
+        <StackPanel HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+            <TextBlock Text="{Binding nazwa}"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+            </Grid>
+            <TextBlock Grid.Row="0"
+                       Text="Ilość:"/>
+            <TextBox Grid.Row="1"
+                     Text="{Binding qunatity}"/>
+            <!-- Add to Cart Button -->
+            <Button Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Left"
+                    Padding="5"
+                    BorderBrush="Black"
+                    BorderThickness="1"
+                    Background="LightGray"
+                    Content="Dodaj do koszyka"
+                    FontSize="20"
+                    Margin="0,0,0,10"
+                    Command="{Binding AddToCart}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
