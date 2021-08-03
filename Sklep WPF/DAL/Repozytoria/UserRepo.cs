@@ -15,7 +15,6 @@ namespace Sklep_WPF.DAL.Repozytoria
         public static async Task<User> Login(LoginModel login)
         {
             User user = null;
-            string serializedLogin = JsonConvert.SerializeObject(login);
             HttpRequestMessage req = new HttpRequestMessage(HttpMethod.Post, "User/Login");
             req.Content = new StringContent(JsonConvert.SerializeObject(login), Encoding.UTF8, "application/json");
             HttpResponseMessage responseMessage = await ClientHttp.Client.SendAsync(req).ConfigureAwait(false);
@@ -30,6 +29,20 @@ namespace Sklep_WPF.DAL.Repozytoria
         public static void Logout()
         {
             ClientHttp.Client.GetAsync("User/Logout");
+        }
+
+        public static async Task<User> Register(RegisterModel model)
+        {
+            User user = null;
+            HttpRequestMessage req = new HttpRequestMessage(HttpMethod.Post, "User/Register");
+            req.Content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+            HttpResponseMessage responseMessage = await ClientHttp.Client.SendAsync(req).ConfigureAwait(false);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                string jsonResult = await responseMessage.Content.ReadAsStringAsync();
+                user = JsonConvert.DeserializeObject<User>(jsonResult);
+            }
+            return user;
         }
     }
 }

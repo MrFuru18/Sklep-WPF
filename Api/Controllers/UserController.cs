@@ -64,7 +64,7 @@ namespace Api.Controllers
             {
                 db.Users.Add(u);
                 db.SaveChanges();
-                return new UserView(u);
+                return Login(new LoginModel() { email = model.email, password = model.password }).Result;
             }
             return null;
         }
