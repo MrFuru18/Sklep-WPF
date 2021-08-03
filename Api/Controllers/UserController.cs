@@ -31,26 +31,6 @@ namespace Api.Controllers
         }
 
         [HttpPost]
-        [Route("Test")]
-        [AllowAnonymous]
-        public async Task<ActionResult<UserView>> Make()
-        {
-            User u = new()
-            {
-                UserName = "name",
-                Email = "mail@adres.com"
-            };
-            IdentityResult r = await userManager.CreateAsync(u, "superSecret");
-            if (r.Succeeded)
-            {
-                db.Users.Add(u);
-                db.SaveChanges();
-                return new UserView(u);
-            }
-            return null;
-        }
-
-        [HttpPost]
         [Route("Login")]
         [AllowAnonymous]
         public async Task<ActionResult<UserView>> Login(LoginModel loginModel)
@@ -67,6 +47,28 @@ namespace Api.Controllers
             return new EmptyResult();
         }
 
+        [HttpPost]
+        [Route("Register")]
+        [AllowAnonymous]
+        public async Task<ActionResult<UserView>> Register(RegisterModel model)
+        {
+            User u = new()
+            {
+                imie = model.firstName,
+                nazwisko = model.lastName,
+                Email = model.email,
+                PhoneNumber=model.phoneNumber
+            };
+            IdentityResult r = await userManager.CreateAsync(u, model.password);
+            if (r.Succeeded)
+            {
+                db.Users.Add(u);
+                db.SaveChanges();
+                return new UserView(u);
+            }
+            return null;
+        }
+
         [HttpGet]
         [Route("Logout")]
         [Authorize]
@@ -74,5 +76,6 @@ namespace Api.Controllers
         {
             await signInManager.SignOutAsync();
         }
+
     }
 }
