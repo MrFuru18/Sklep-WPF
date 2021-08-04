@@ -37,7 +37,7 @@ namespace Sklep_WPF.ViewModel
         public LoginViewModel(AccountStore accountStore, Navigate navigate)
         {
             Login = new LoginCommand(this, accountStore, navigate);
-            Signup = new NavigateCommand<SignupViewModel>(navigate, () => new SignupViewModel());
+            Signup = new NavigateCommand<SignupViewModel>(navigate, () => new SignupViewModel(accountStore,navigate));
         }
 
 

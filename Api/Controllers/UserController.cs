@@ -55,6 +55,7 @@ namespace Api.Controllers
             User u = new()
             {
                 imie = model.firstName,
+                UserName = model.email,
                 nazwisko = model.lastName,
                 Email = model.email,
                 PhoneNumber=model.phoneNumber

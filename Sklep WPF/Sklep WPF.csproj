@@ -61,11 +61,13 @@
     <Compile Include="CurrentSession\AccountStore.cs" />
     <Compile Include="CurrentSession\ProductStore.cs" />
     <Compile Include="Model\Account.cs" />
+    <Compile Include="Model\RegisterModel.cs" />
     <Compile Include="Navigation\CommandBase.cs" />
     <Compile Include="Navigation\LoginCommand.cs" />
     <Compile Include="Navigation\LogoutCommand.cs" />
     <Compile Include="Navigation\Navigate.cs" />
     <Compile Include="Navigation\NavigateCommand.cs" />
+    <Compile Include="Navigation\RegisterCommand.cs" />
     <Compile Include="ViewModel\CartViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\OrderHistoryViewModel.cs" />
