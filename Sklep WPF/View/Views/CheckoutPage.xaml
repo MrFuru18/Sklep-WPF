@@ -1,0 +1,230 @@
+﻿<UserControl x:Class="Sklep_WPF.View.Views.CheckoutPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Sklep_WPF.View.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="860">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height ="6*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Potwierdź Zamówienie"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="3"
+                   HorizontalAlignment="Center"
+                   FontSize="30"
+                   Margin="0,10,0,0"/>
+
+        <!-- Address -->
+        <TextBlock Text="Podsumowanie"
+                   Grid.Row="1"
+                   Grid.Column="0"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="20"/>
+        <StackPanel Grid.Row="2"
+                    Grid.Column="0">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Width="150">
+                    <!-- Price -->
+                    <TextBlock Text="Cena:"
+                               VerticalAlignment="Center"
+                               FontSize="18"
+                               Margin="5,0,0,5"/>
+                    <!-- Shipping -->
+                    <TextBlock Text="Cena dostawy:"
+                               VerticalAlignment="Center"
+                               FontSize="18"
+                               Margin="5,0,0,5"/>
+                    <!-- Total -->
+                    <TextBlock Text="W sumie:"
+                               VerticalAlignment="Center"
+                               FontSize="18"
+                               Margin="5,0,0,5"/>
+                </StackPanel>
+                <StackPanel>
+                    <!-- Price -->
+                    <TextBlock VerticalAlignment="Center"
+                               FontSize="18"
+                               Margin="0,0,0,5"
+                               Text="{Binding Price}"/>
+                    <!-- Shipping -->
+                    <TextBlock Text="do ustalenia"
+                       VerticalAlignment="Center"
+                       FontSize="18"
+                       Margin="0,0,0,5"/>
+                    <!-- Total -->
+                    <TextBlock Text="do ustalenia"
+                       VerticalAlignment="Center"
+                       FontSize="18"
+                       Margin="0,0,0,5"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Address -->
+            <TextBlock Text="Zapisane adresy"
+                   Grid.Row="1"
+                   Grid.Column="3"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="20"
+                   Margin="0,20,0,5"/>
+            
+        </StackPanel>
+
+        <!-- Address -->
+        <TextBlock Text="Dane Adresowe"
+                   Grid.Row="1"
+                   Grid.Column="3"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="20"/>
+
+        <StackPanel Grid.Row="2"
+                    Grid.Column="2">
+            <!-- Name TextBox -->
+            <TextBlock Text="Imię"
+                       VerticalAlignment="Center"
+                       FontSize="18"
+                       Margin="0,0,0,5"/>
+
+            <TextBox x:Name="Name_textbox"
+                     Padding="1"
+                     FontSize="18"
+                     VerticalAlignment="Center"
+                     Margin="0,0,5,0"
+                     Text="{Binding Name}"/>
+
+            <!-- Surname TextBox -->
+            <TextBlock Text="Nazwisko"
+                       VerticalAlignment="Center"
+                       FontSize="18"
+                       Margin="0,5,0,5"/>
+            
+            <TextBox x:Name="Surname_textbox"
+                     Padding="1"
+                     FontSize="18"
+                     VerticalAlignment="Center"
+                     Margin="0,0,5,0"
+                     Text="{Binding Surname}"/>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Width="310">
+                    <!-- Street TextBox -->
+                    <TextBlock Text="Ulica"
+                               VerticalAlignment="Center"
+                               FontSize="18"
+                               Margin="0,5,0,5"/>
+
+                    <TextBox x:Name="Street_textbox"
+                             Padding="1"
+                             FontSize="18"
+                             VerticalAlignment="Center"
+                             Margin="0,0,5,0"
+                             Text="{Binding Street}"/>
+                </StackPanel>
+                <StackPanel>
+                    <!-- Number TextBox -->
+                    <TextBlock Text="Nr"
+                               VerticalAlignment="Center"
+                               FontSize="18"
+                               Margin="0,5,0,5"/>
+
+                    <TextBox x:Name="Number_textbox"
+                             Padding="1"
+                             FontSize="18"
+                             Width="97"
+                             VerticalAlignment="Center"
+                             Margin="0,0,5,0"
+                             Text="{Binding Number}"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Width="200">
+                    <!-- Apartment Number TextBox -->
+                    <TextBlock Text="Nr mieszkania"
+                       VerticalAlignment="Center"
+                       FontSize="18"
+                       Margin="0,5,0,5"/>
+
+                    <TextBox x:Name="ApartmentNumber_textbox"
+                     Padding="1"
+                     FontSize="18"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Center"
+                     Width="140"
+                     Margin="0,0,5,0"
+                     Text="{Binding ApartmentNumber}"/>
+                </StackPanel>
+                <StackPanel>
+                    <!-- Postal Code TextBox -->
+                    <TextBlock Text="Kod pocztowy"
+                               VerticalAlignment="Center"
+                               FontSize="18"
+                               Margin="0,5,0,5"/>
+
+                    <TextBox x:Name="PostalCode_textbox"
+                             Padding="1"
+                             FontSize="18"
+                             Width="140"
+                             VerticalAlignment="Center"
+                             Margin="0,0,5,0"
+                             Text="{Binding PostalCode}"/>
+                </StackPanel>
+            </StackPanel>
+            <!-- City TextBox -->
+            <TextBlock Text="Miejscowość"
+                       VerticalAlignment="Center"
+                       FontSize="18"
+                       Margin="0,5,0,5"/>
+
+            <TextBox x:Name="City_textbox"
+                     Padding="1"
+                     FontSize="18"
+                     VerticalAlignment="Center"
+                     Margin="0,0,5,0"
+                     Text="{Binding City}"/>
+
+            <!-- Phone Number TextBox -->
+            <TextBlock Text="Nr telefonu"
+                       VerticalAlignment="Center"
+                       FontSize="18"
+                       Margin="0,5,0,5"/>
+
+            <TextBox x:Name="PhoneNumber_textbox"
+                     Padding="1"
+                     FontSize="18"
+                     VerticalAlignment="Center"
+                     Margin="0,0,5,0"
+                     Text="{Binding PhoneNumber}"/>
+
+        </StackPanel>
+
+        <!-- Place Order Button -->
+        <Button Grid.Row="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Center"
+                Padding="5"
+                BorderBrush="Black"
+                BorderThickness="1"
+                Background="LightGray"
+                Content="Złóż Zamówienie"
+                FontSize="20"
+                Margin="0,0,0,20"
+                Command="{Binding PlaceOrder}"/>
+    </Grid>
+</UserControl>

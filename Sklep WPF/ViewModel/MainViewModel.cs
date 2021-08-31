@@ -57,7 +57,7 @@ namespace Sklep_WPF.ViewModel
                     }
                     else if (p.ToString() == "Cart")
                     {
-                        _navigate.CurrentPage = new CartViewModel(_productStore);
+                        _navigate.CurrentPage = new CartViewModel(_productStore, _navigate);
                     }
                     else if (p.ToString() == "Order History")
                     {

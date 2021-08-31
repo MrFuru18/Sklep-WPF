@@ -71,19 +71,20 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <!-- Place Order Button -->
+        <!-- Proceed to Checkout Button -->
         <Button Grid.Row="2"
                 Grid.Column="0"
                 Grid.ColumnSpan="3"
                 VerticalAlignment="Bottom"
                 HorizontalAlignment="Center"
                 Padding="5"
+                Width="120"
                 BorderBrush="Black"
                 BorderThickness="1"
                 Background="LightGray"
-                Content="Złóż Zamówienie"
+                Content="Dalej >>"
                 FontSize="20"
-                Margin="0,0,0,10"
-                Command="{Binding PlaceOrder}"/>
+                Margin="0,0,0,20"
+                Command="{Binding ProceedToCheckout}"/>
     </Grid>
 </UserControl>

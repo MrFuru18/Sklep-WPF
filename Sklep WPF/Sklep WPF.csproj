@@ -69,6 +69,7 @@
     <Compile Include="Navigation\NavigateCommand.cs" />
     <Compile Include="Navigation\RegisterCommand.cs" />
     <Compile Include="ViewModel\CartViewModel.cs" />
+    <Compile Include="ViewModel\CheckoutViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\OrderHistoryViewModel.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
@@ -77,6 +78,9 @@
     <Compile Include="ViewModel\UserViewModel.cs" />
     <Compile Include="View\Views\CartPage.xaml.cs">
       <DependentUpon>CartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Views\CheckoutPage.xaml.cs">
+      <DependentUpon>CheckoutPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Views\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
@@ -126,6 +130,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\Views\CartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Views\CheckoutPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
