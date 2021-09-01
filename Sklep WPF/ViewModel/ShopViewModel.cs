@@ -99,7 +99,7 @@ namespace Sklep_WPF.ViewModel
                     Product selectedProduct = new Product();
                     selectedProduct = (Product)p;
                     _productStore.AddProduct(selectedProduct);
-                    MessageBox.Show("Clicked on " + selectedProduct.nazwa/* + "\nQuantity: " + Quantity*/);
+                    //MessageBox.Show("Clicked on " + selectedProduct.nazwa/* + "\nQuantity: " + Quantity*/);
                     //Quantity = null;
 
                 }, p => true));

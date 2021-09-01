@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Windows;
 using System.Windows.Input;
 using Sklep_WPF.Navigation;
 
@@ -18,14 +20,30 @@ namespace Sklep_WPF.ViewModel
         private readonly ProductStore _productStore;
         private readonly Navigate _navigate;
 
-        public List<Product> products { get; set; }
+        public BindingList<ProductCart> cartProducts { get; set; }
 
         public CartViewModel(ProductStore productStore, Navigate navigate)
         {
             _productStore = productStore;
             _navigate = navigate;
 
-            products = _productStore.products;
+            cartProducts = _productStore.cartProducts;
+        }
+
+
+        private ICommand _deleteFromCart;
+        public ICommand DeleteFromCart
+        {
+            get
+            {
+                return _deleteFromCart ?? (_deleteFromCart = new RelayCommand((p) =>
+                {
+                    ProductCart selectedProduct = new ProductCart();
+                    selectedProduct = (ProductCart)p;
+                    _productStore.RemoveProduct(selectedProduct);
+
+                }, p => true));
+            }
         }
 
         private ICommand _prodceedToCheckout;
