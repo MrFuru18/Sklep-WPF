@@ -62,6 +62,22 @@ namespace Sklep_WPF.CurrentSession
                 }
             }
         }
+
+        public void ClearCart()
+        {
+            cartProducts.Clear();
+        }
+
+        public string ShowPrice()
+        {
+            double price = 0;
+            for (var i = 0; i < cartProducts.Count; i++)
+            {
+                price += cartProducts[i].price * cartProducts[i].quantity;
+            }
+            return (price + " zł");
+        }
         
+        public bool IsEmpty => cartProducts.Count != 0;
     }
 }

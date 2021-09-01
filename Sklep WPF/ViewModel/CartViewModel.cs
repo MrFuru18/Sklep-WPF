@@ -30,7 +30,6 @@ namespace Sklep_WPF.ViewModel
             cartProducts = _productStore.cartProducts;
         }
 
-
         private ICommand _deleteFromCart;
         public ICommand DeleteFromCart
         {
@@ -53,7 +52,10 @@ namespace Sklep_WPF.ViewModel
             {
                 return _prodceedToCheckout ?? (_prodceedToCheckout = new RelayCommand((p) =>
                 {
-                    _navigate.CurrentPage = new CheckoutViewModel();
+                    if (_productStore.IsEmpty == true)
+                        _navigate.CurrentPage = new CheckoutViewModel(_productStore, _navigate);
+                    else
+                        MessageBox.Show("Koszyk jest pusty");
 
                 }, p => true));
             }

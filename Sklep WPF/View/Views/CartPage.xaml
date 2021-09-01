@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Sklep_WPF.View.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="860">
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -27,7 +28,8 @@
                    Margin="0,10,0,0"/>
 
         <!-- Products -->
-        <ListView Grid.Row="1"
+        <ListView x:Name="Products_ListView"
+                  Grid.Row="1"
                   Grid.Column="0"
                   Grid.ColumnSpan="3"
                   Height="410"
@@ -98,5 +100,7 @@
                 FontSize="20"
                 Margin="0,0,0,20"
                 Command="{Binding ProceedToCheckout}"/>
+        <!--IsEnabled="{Binding ItemsSource.Count, ElementName=Products_ListView}"-->
+        
     </Grid>
 </UserControl>

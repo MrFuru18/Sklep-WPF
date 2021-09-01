@@ -101,7 +101,10 @@
                                 <!--TextBlock Text="Ilość: "/-->
                             </StackPanel>
                             <StackPanel Grid.Column="3">
-                                <TextBlock Text="{Binding cena}"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding cena}"/>
+                                    <TextBlock Text=" zł"/>
+                                </StackPanel>
                                 <!--TextBox x:Name="Quantity_textbox"
                                          HorizontalAlignment="Left"
                                          Width="40"
