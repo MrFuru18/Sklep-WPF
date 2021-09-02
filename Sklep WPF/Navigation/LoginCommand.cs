@@ -31,8 +31,13 @@ namespace Sklep_WPF.Navigation
                 password = _viewModel.Password
             };
 
-            _accountStore.CurrentAccount = UserRepo.Login(account).Result;
-            _navigate.CurrentPage = new UserViewModel(_accountStore);
+            if (string.IsNullOrWhiteSpace(account.email) || string.IsNullOrWhiteSpace(account.password))
+                MessageBox.Show("Pola nie mogą być puste");
+            else
+            {
+                _accountStore.CurrentAccount = UserRepo.Login(account).Result;
+                _navigate.CurrentPage = new UserViewModel(_accountStore);
+            }
         }
     }
 }
