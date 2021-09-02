@@ -22,6 +22,8 @@ namespace Sklep_WPF.ViewModel
         private readonly CartProductStore _productStore;
         private readonly Navigate _navigate;
 
+        public List<Address> addresses { get; set; }
+
         public CheckoutViewModel(AccountStore accountStore, CartProductStore productStore, Navigate navigate)
         {
             _accountStore = accountStore;
@@ -33,6 +35,44 @@ namespace Sklep_WPF.ViewModel
             Name = _accountStore.CurrentAccount?.imie;
             Surname = _accountStore.CurrentAccount?.nazwisko;
             PhoneNumber = _accountStore?.CurrentAccount?.nr_tel;
+
+            addresses = new List<Address>();
+            Address address1 = new Address()
+            {
+                ulica = "ulica1",
+                nr = 111,
+                nr_mieszkania = 222,
+                kod_pocztowy = "40-100",
+                miejscowosc = "miejscowosc1"
+            };
+            Address address2 = new Address()
+            {
+                ulica = "ulica2",
+                nr = 222,
+                nr_mieszkania = 333,
+                kod_pocztowy = "40-150",
+                miejscowosc = "miejscowosc2"
+            };
+            Address address3 = new Address()
+            {
+                ulica = "ulica3",
+                nr = 444,
+                nr_mieszkania = 555,
+                kod_pocztowy = "40-160",
+                miejscowosc = "miejscowosc3"
+            };
+            Address address4 = new Address()
+            {
+                ulica = "ulica4",
+                nr = 666,
+                nr_mieszkania = 666,
+                kod_pocztowy = "40-170",
+                miejscowosc = "miejscowosc4"
+            };
+            addresses.Add(address1);
+            addresses.Add(address2);
+            addresses.Add(address3);
+            addresses.Add(address4);
         }
 
         public string Price { get; set; }
@@ -126,6 +166,25 @@ namespace Sklep_WPF.ViewModel
             }
         }
 
+        private ICommand _chooseAddress;
+        public ICommand ChooseAddress
+        {
+            get
+            {
+                return _chooseAddress ?? (_chooseAddress = new RelayCommand((p) =>
+                {
+                    Address selectedAddress = new Address();
+                    selectedAddress = (Address)p;
+                    Street = selectedAddress.ulica;
+                    Number = selectedAddress.nr.ToString();
+                    ApartmentNumber = selectedAddress.nr_mieszkania.ToString();
+                    PostalCode = selectedAddress.kod_pocztowy;
+                    City = selectedAddress.miejscowosc;
+
+                }, p => true));
+            }
+        }
+
         private ICommand _placeOrder;
         public ICommand PlaceOrder
         {
@@ -133,9 +192,22 @@ namespace Sklep_WPF.ViewModel
             {
                 return _placeOrder ?? (_placeOrder = new RelayCommand((p) =>
                 {
-                    _productStore.ClearCart();
-                    _navigate.CurrentPage = new CartViewModel(_accountStore, _productStore, _navigate);
-                    MessageBox.Show("Zamówienie złożono pomyślnie\n" + " " + Name + " " + Surname + " " + Street + " " + Number + " " + ApartmentNumber + " " + PostalCode + " " + City + " " + PhoneNumber);
+                    if (string.IsNullOrWhiteSpace(Name)|| string.IsNullOrWhiteSpace(Surname) || string.IsNullOrWhiteSpace(Street) || string.IsNullOrWhiteSpace(Number) || string.IsNullOrWhiteSpace(ApartmentNumber) || string.IsNullOrWhiteSpace(PostalCode) || string.IsNullOrWhiteSpace(City) || string.IsNullOrWhiteSpace(PhoneNumber))
+                        MessageBox.Show("Pola nie mogą być puste");
+                    else
+                    {
+                        _productStore.ClearCart();
+                        _navigate.CurrentPage = new CartViewModel(_accountStore, _productStore, _navigate);
+                        MessageBox.Show("Zamówienie złożono pomyślnie\n" + " " + Name + " " + Surname + " " + Street + " " + Number + " " + ApartmentNumber + " " + PostalCode + " " + City + " " + PhoneNumber);
+                    }
+
+                    /*
+                     Do zaimplementowania
+                     
+                    Number i ApartmentNumber konwersja na long
+                    Gdy nowy adres zostanie wpisany zostanie dodany do bazy zapamiętanych adresów 
+
+                     */
 
                 }, p => true));
             }
