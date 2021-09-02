@@ -139,8 +139,6 @@
                                     BorderThickness="1"
                                     Background="LightGray"
                                     Content="Usuń"
-                                    FontSize="20"
-                                    Margin="0,0,0,10"
                                     Command="{Binding DataContext.RemoveAddress, RelativeSource={RelativeSource AncestorType=ListView}}"
                                     CommandParameter="{Binding}"/>
                         </Grid>

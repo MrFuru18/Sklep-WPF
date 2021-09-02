@@ -116,17 +116,15 @@
                                 
                                 <!-- Choose Address Button -->
                                 <Button Grid.Column="1"
-                                    VerticalAlignment="Center"
-                                    HorizontalAlignment="Center"
-                                    Padding="5"
-                                    BorderBrush="Black"
-                                    BorderThickness="1"
-                                    Background="LightGray"
-                                    Content="Wybierz"
-                                    FontSize="20"
-                                    Margin="0,0,0,10"
-                                    Command="{Binding DataContext.ChooseAddress, RelativeSource={RelativeSource AncestorType=ListView}}"
-                                    CommandParameter="{Binding}"/>
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        Padding="5"
+                                        BorderBrush="Black"
+                                        BorderThickness="1"
+                                        Background="LightGray"
+                                        Content="Wybierz"
+                                        Command="{Binding DataContext.ChooseAddress, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                        CommandParameter="{Binding}"/>
                             </Grid>
                         </Border>
                     </DataTemplate>
