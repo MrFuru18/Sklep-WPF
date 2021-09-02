@@ -90,7 +90,7 @@
                   Width="400"
                   VerticalAlignment="Top"
                   HorizontalAlignment="Center"
-                  FontSize="20"
+                  FontSize="18"
                   Margin="5,5,5,5"
                   ItemsSource="{Binding addresses}">
                 <ListView.ItemTemplate>
