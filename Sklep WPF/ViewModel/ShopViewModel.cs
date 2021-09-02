@@ -15,11 +15,11 @@ namespace Sklep_WPF.ViewModel
 
     class ShopViewModel : ViewModelBase
     {
-        private readonly ProductStore _productStore;
+        private readonly CartProductStore _productStore;
         public List<Product> products { get; set; }
 
 
-        public ShopViewModel(ProductStore productStore)
+        public ShopViewModel(CartProductStore productStore)
         {
             _productStore = productStore;
 
@@ -99,7 +99,7 @@ namespace Sklep_WPF.ViewModel
                     Product selectedProduct = new Product();
                     selectedProduct = (Product)p;
                     _productStore.AddProduct(selectedProduct);
-                    MessageBox.Show("Clicked on " + selectedProduct.nazwa/* + "\nQuantity: " + Quantity*/);
+                    //MessageBox.Show("Clicked on " + selectedProduct.nazwa/* + "\nQuantity: " + Quantity*/);
                     //Quantity = null;
 
                 }, p => true));

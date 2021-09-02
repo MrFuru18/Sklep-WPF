@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Sklep_WPF.View.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="860">
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -27,7 +28,8 @@
                    Margin="0,10,0,0"/>
 
         <!-- Products -->
-        <ListView Grid.Row="1"
+        <ListView x:Name="Products_ListView"
+                  Grid.Row="1"
                   Grid.Column="0"
                   Grid.ColumnSpan="3"
                   Height="410"
@@ -36,7 +38,7 @@
                   HorizontalAlignment="Center"
                   FontSize="20"
                   Margin="0,10,0,0"
-                  ItemsSource="{Binding products}">
+                  ItemsSource="{Binding cartProducts}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border BorderThickness="1" BorderBrush="LightGray">
@@ -50,40 +52,55 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="140"/>
                             </Grid.RowDefinitions>
-                            <TextBlock Grid.Column="0" Text="{Binding nazwa}" TextWrapping="Wrap"/>
+                            <TextBlock Grid.Column="0" Text="{Binding name}" TextWrapping="Wrap"/>
                             <StackPanel Grid.Column="1">
-                                <TextBlock Text="{Binding opis}" TextWrapping="Wrap"/>
+                                <TextBlock Text="{Binding description}" TextWrapping="Wrap"/>
                             </StackPanel>
                             <StackPanel Grid.Column="2">
                                 <TextBlock Text="Cena: "/>
-                                <!--TextBlock Text="Ilość: "/-->
+                                <TextBlock Text="Ilość: "/>
                             </StackPanel>
                             <StackPanel Grid.Column="3">
-                                <TextBlock Text="{Binding cena}"/>
-                                <!--TextBox x:Name="Quantity_textbox"
-                                         HorizontalAlignment="Left"
-                                         Width="40"
-                                         Text="{Binding DataContext.Quantity, RelativeSource={RelativeSource AncestorType=ListView}}"/-->
+                                <TextBlock Text="{Binding price}"/>
+                                <TextBlock Text="{Binding quantity}"/>
                             </StackPanel>
+                            <!-- Delete from Cart Button -->
+                            <Button Grid.Row="2"
+                                    Grid.Column="2"
+                                    Grid.ColumnSpan="2"
+                                    VerticalAlignment="Bottom"
+                                    HorizontalAlignment="Left"
+                                    Padding="5"
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
+                                    Background="LightGray"
+                                    Content="Usuń z koszyka"
+                                    FontSize="20"
+                                    Margin="0,0,0,10"
+                                    Command="{Binding DataContext.DeleteFromCart, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                    CommandParameter="{Binding}"/>
                         </Grid>
                     </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
-        <!-- Place Order Button -->
+        <!-- Proceed to Checkout Button -->
         <Button Grid.Row="2"
                 Grid.Column="0"
                 Grid.ColumnSpan="3"
                 VerticalAlignment="Bottom"
                 HorizontalAlignment="Center"
                 Padding="5"
+                Width="120"
                 BorderBrush="Black"
                 BorderThickness="1"
                 Background="LightGray"
-                Content="Złóż Zamówienie"
+                Content="Dalej >>"
                 FontSize="20"
-                Margin="0,0,0,10"
-                Command="{Binding PlaceOrder}"/>
+                Margin="0,0,0,20"
+                Command="{Binding ProceedToCheckout}"/>
+        <!--IsEnabled="{Binding ItemsSource.Count, ElementName=Products_ListView}"-->
+        
     </Grid>
 </UserControl>

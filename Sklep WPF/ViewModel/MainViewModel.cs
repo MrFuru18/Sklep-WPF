@@ -15,7 +15,7 @@ namespace Sklep_WPF.ViewModel
     class MainViewModel : ViewModelBase
     {
         private readonly AccountStore _accountStore;
-        private readonly ProductStore _productStore;
+        private readonly CartProductStore _productStore;
         private readonly Navigate _navigate;
 
         public ViewModelBase CurrentPage => _navigate.CurrentPage;
@@ -24,7 +24,7 @@ namespace Sklep_WPF.ViewModel
 
         public ICommand LogoutCommand { get; }
 
-        public MainViewModel(AccountStore accountStore, ProductStore productStore, Navigate navigate)
+        public MainViewModel(AccountStore accountStore, CartProductStore productStore, Navigate navigate)
         {
             _accountStore = accountStore;
             _productStore = productStore;
@@ -57,7 +57,7 @@ namespace Sklep_WPF.ViewModel
                     }
                     else if (p.ToString() == "Cart")
                     {
-                        _navigate.CurrentPage = new CartViewModel(_productStore);
+                        _navigate.CurrentPage = new CartViewModel(_accountStore, _productStore, _navigate);
                     }
                     else if (p.ToString() == "Order History")
                     {

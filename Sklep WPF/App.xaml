@@ -26,5 +26,8 @@
         <DataTemplate DataType="{x:Type vm:SignupViewModel}">
             <views:SignupPage/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:CheckoutViewModel}">
+            <views:CheckoutPage/>
+        </DataTemplate>
     </Application.Resources>
 </Application>
