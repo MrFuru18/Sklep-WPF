@@ -89,7 +89,8 @@
                  Width="300"
                  VerticalAlignment="Center"
                  HorizontalAlignment="Left"
-                 FontSize="20"/>
+                 FontSize="20"
+                 PasswordChanged="PasswordBox_PasswordChanged"/>
 
         <!-- Name TextBox -->
         <TextBlock Grid.Row="4"
