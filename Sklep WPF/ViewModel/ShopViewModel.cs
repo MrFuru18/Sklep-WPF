@@ -15,11 +15,11 @@ namespace Sklep_WPF.ViewModel
 
     class ShopViewModel : ViewModelBase
     {
-        private readonly ProductStore _productStore;
+        private readonly CartProductStore _productStore;
         public List<Product> products { get; set; }
 
 
-        public ShopViewModel(ProductStore productStore)
+        public ShopViewModel(CartProductStore productStore)
         {
             _productStore = productStore;
 

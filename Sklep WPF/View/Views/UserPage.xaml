@@ -13,6 +13,7 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
             <RowDefinition Height="4*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -74,15 +75,30 @@
                    Margin="0,10,0,0"
                    Text="{Binding Surname}"/>
 
-        <!-- Address TextBlock -->
+        <!-- Phone Number TextBlock -->
         <TextBlock Grid.Row="5"
+                   Grid.Column="0"
+                   HorizontalAlignment="Right"
+                   FontSize="20"
+                   Margin="0,10,0,0"
+                   Text="Numer telefonu:"/>
+
+        <TextBlock Grid.Row="5"
+                   Grid.Column="2"
+                   HorizontalAlignment="Left"
+                   FontSize="20"
+                   Margin="0,10,0,0"
+                   Text="{Binding PhoneNumber}"/>
+
+        <!-- Address TextBlock -->
+        <TextBlock Grid.Row="6"
                    Grid.Column="0"
                    HorizontalAlignment="Right"
                    FontSize="20"
                    Margin="0,10,0,0"
                    Text="Adres:"/>
 
-        <TextBlock Grid.Row="5"
+        <TextBlock Grid.Row="6"
                    Grid.Column="2"
                    HorizontalAlignment="Left"
                    FontSize="20"

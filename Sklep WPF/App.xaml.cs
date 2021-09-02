@@ -19,7 +19,7 @@ namespace Sklep_WPF
         protected override void OnStartup(StartupEventArgs e)
         {
             AccountStore accountStore = new AccountStore();
-            ProductStore productStore = new ProductStore();
+            CartProductStore productStore = new CartProductStore();
             Navigate navigate = new Navigate();
 
             navigate.CurrentPage = new LoginViewModel(accountStore, navigate);

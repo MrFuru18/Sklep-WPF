@@ -147,7 +147,7 @@
                              Width="97"
                              VerticalAlignment="Center"
                              Margin="0,0,5,0"
-                             Text="{Binding Number}"/>
+                             Text="{Binding Number, FallbackValue=''}"/>
                 </StackPanel>
             </StackPanel>
 

@@ -17,17 +17,19 @@ namespace Sklep_WPF.ViewModel
 
     class CartViewModel : ViewModelBase
     {
-        private readonly ProductStore _productStore;
+        private readonly AccountStore _accountStore;
+        private readonly CartProductStore _productStore;
         private readonly Navigate _navigate;
 
-        public BindingList<ProductCart> cartProducts { get; set; }
+        public BindingList<ProductCart> cartProducts => _productStore?.cartProducts; //{ get; set; }
 
-        public CartViewModel(ProductStore productStore, Navigate navigate)
+        public CartViewModel(AccountStore accountStore, CartProductStore productStore, Navigate navigate)
         {
+            _accountStore = accountStore;
             _productStore = productStore;
             _navigate = navigate;
 
-            cartProducts = _productStore.cartProducts;
+            //cartProducts = _productStore.cartProducts;
         }
 
         private ICommand _deleteFromCart;
@@ -53,7 +55,7 @@ namespace Sklep_WPF.ViewModel
                 return _prodceedToCheckout ?? (_prodceedToCheckout = new RelayCommand((p) =>
                 {
                     if (_productStore.IsEmpty == true)
-                        _navigate.CurrentPage = new CheckoutViewModel(_productStore, _navigate);
+                        _navigate.CurrentPage = new CheckoutViewModel(_accountStore, _productStore, _navigate);
                     else
                         MessageBox.Show("Koszyk jest pusty");
 

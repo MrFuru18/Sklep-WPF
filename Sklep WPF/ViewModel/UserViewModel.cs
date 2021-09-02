@@ -16,8 +16,9 @@ namespace Sklep_WPF.ViewModel
 
 
         public string Email => _accountStore.CurrentAccount?.email;
-        public string Name;
-        public string Surname;
+        public string Name => _accountStore.CurrentAccount?.imie;
+        public string Surname => _accountStore.CurrentAccount?.nazwisko;
+        public string PhoneNumber => _accountStore.CurrentAccount?.nr_tel;
         public string Address;
         public UserViewModel(AccountStore accountStore)
         {

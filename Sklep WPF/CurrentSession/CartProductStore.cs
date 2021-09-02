@@ -11,13 +11,13 @@ namespace Sklep_WPF.CurrentSession
     using Model;
     using System.ComponentModel;
     using ViewModel;
-    class ProductStore
+    class CartProductStore
     {
         //public List<Product> products { get; set; }
         public BindingList<ProductCart> cartProducts { get; set; }
         bool counted;
 
-        public ProductStore()
+        public CartProductStore()
         {
             //products = new List<Product>();
             cartProducts = new BindingList<ProductCart>();
