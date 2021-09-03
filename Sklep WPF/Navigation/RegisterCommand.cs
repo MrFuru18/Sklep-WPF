@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Sklep_WPF.Navigation
 {
@@ -32,8 +33,18 @@ namespace Sklep_WPF.Navigation
                 lastName = _viewModel.Surname,
                 phoneNumber = _viewModel.Number
             };
-            _accountStore.CurrentAccount = UserRepo.Register(account).Result;
-            _navigate.CurrentPage = new UserViewModel(_accountStore);
+
+            if (string.IsNullOrWhiteSpace(account.email) || string.IsNullOrWhiteSpace(account.password) || string.IsNullOrWhiteSpace(account.firstName) || string.IsNullOrWhiteSpace(account.lastName) || string.IsNullOrWhiteSpace(account.phoneNumber))
+                MessageBox.Show("Pola nie mogą być puste");
+            else if (account.password.Length < 8)
+            {
+                MessageBox.Show("Hasło musi mieć przynajmniej 8 znaków");
+            }
+            else
+            {
+                _accountStore.CurrentAccount = UserRepo.Register(account).Result;
+                _navigate.CurrentPage = new LoginViewModel(_accountStore, _navigate);
+            }
         }
 
     }
