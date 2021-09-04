@@ -54,10 +54,16 @@ namespace Sklep_WPF.ViewModel
             {
                 return _prodceedToCheckout ?? (_prodceedToCheckout = new RelayCommand((p) =>
                 {
-                    if (_productStore.IsEmpty == true)
-                        _navigate.CurrentPage = new CheckoutViewModel(_accountStore, _productStore, _navigate);
+                    if (_accountStore.IsLoggedIn)
+                    {
+                        if (_productStore.IsEmpty == true)
+                            _navigate.CurrentPage = new CheckoutViewModel(_accountStore, _productStore, _navigate);
+                        else
+                            MessageBox.Show("Koszyk jest pusty");
+                    }
                     else
-                        MessageBox.Show("Koszyk jest pusty");
+                        MessageBox.Show("Musisz być zalogowany");
+                    
 
                 }, p => true));
             }

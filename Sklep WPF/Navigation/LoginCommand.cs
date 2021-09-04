@@ -36,7 +36,10 @@ namespace Sklep_WPF.Navigation
             else
             {
                 _accountStore.CurrentAccount = UserRepo.Login(account).Result;
-                _navigate.CurrentPage = new UserViewModel(_accountStore);
+                if (_accountStore.IsLoggedIn)
+                    _navigate.CurrentPage = new UserViewModel(_accountStore);
+                else
+                    MessageBox.Show("Dane logowania nieprawidłowe");
             }
         }
     }
