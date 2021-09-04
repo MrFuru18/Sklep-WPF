@@ -184,13 +184,12 @@ namespace Sklep_WPF.ViewModel
                                 kod_pocztowy = PostalCode,
                                 miejscowosc = City
                             };
-                            AddressRepo.addAddress(selectedAddress);
+                            selectedAddress = AddressRepo.addAddress(selectedAddress).Result;
                         }
                         /*
                          Do zaimplementowania
 
                         złożenie zamówienia
-
                          */
 
                         //MessageBox.Show("Zamówienie złożono pomyślnie\n" + " " + Name + " " + Surname + " " + Street + " " + Number + " " + ApartmentNumber + " " + PostalCode + " " + City + " " + PhoneNumber);

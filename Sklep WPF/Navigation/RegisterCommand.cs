@@ -43,6 +43,7 @@ namespace Sklep_WPF.Navigation
             else
             {
                 _accountStore.CurrentAccount = UserRepo.Register(account).Result;
+                MessageBox.Show("Konto zostało założone");
                 _navigate.CurrentPage = new LoginViewModel(_accountStore, _navigate);
             }
         }
