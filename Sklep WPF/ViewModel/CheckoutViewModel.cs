@@ -157,23 +157,48 @@ namespace Sklep_WPF.ViewModel
             {
                 return _placeOrder ?? (_placeOrder = new RelayCommand((p) =>
                 {
+                    long value;
                     if (string.IsNullOrWhiteSpace(Name)|| string.IsNullOrWhiteSpace(Surname) || string.IsNullOrWhiteSpace(Street) || string.IsNullOrWhiteSpace(Number) || string.IsNullOrWhiteSpace(ApartmentNumber) || string.IsNullOrWhiteSpace(PostalCode) || string.IsNullOrWhiteSpace(City) || string.IsNullOrWhiteSpace(PhoneNumber))
                         MessageBox.Show("Pola nie mogą być puste");
+                    else if (!long.TryParse(Number, out value) || !long.TryParse(Number, out value))
+                    {
+                        MessageBox.Show("Format nieprawidłowy");
+                    }
                     else
                     {
+                       bool addressAlreadyExist = false;
+                       foreach (var address in addresses)
+                        {
+                            if (address.ulica == Street && address.nr == long.Parse(Number) && address.nr_mieszkania == long.Parse(ApartmentNumber) && address.kod_pocztowy == PostalCode && address.miejscowosc == City)
+                            {
+                                addressAlreadyExist = true;
+                            }
+                        }
+                       if (!addressAlreadyExist) 
+                       {
+                            Address selectedAddress = new Address()
+                            {
+                                ulica = Street,
+                                nr = long.Parse(Number),
+                                nr_mieszkania = long.Parse(ApartmentNumber),
+                                kod_pocztowy = PostalCode,
+                                miejscowosc = City
+                            };
+                            AddressRepo.addAddress(selectedAddress);
+                        }
+                        /*
+                         Do zaimplementowania
+
+                        złożenie zamówienia
+
+                         */
+
+                        //MessageBox.Show("Zamówienie złożono pomyślnie\n" + " " + Name + " " + Surname + " " + Street + " " + Number + " " + ApartmentNumber + " " + PostalCode + " " + City + " " + PhoneNumber);
                         _productStore.ClearCart();
                         _navigate.CurrentPage = new CartViewModel(_accountStore, _productStore, _navigate);
 
-                        MessageBox.Show("Zamówienie złożono pomyślnie\n" + " " + Name + " " + Surname + " " + Street + " " + Number + " " + ApartmentNumber + " " + PostalCode + " " + City + " " + PhoneNumber);
+
                     }
-
-                    /*
-                     Do zaimplementowania
-                     
-                    Number i ApartmentNumber konwersja na long
-                    Gdy nowy adres zostanie wpisany zostanie dodany do bazy zapamiętanych adresów 
-
-                     */
 
                 }, p => true));
             }
