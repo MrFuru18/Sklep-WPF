@@ -38,7 +38,7 @@ namespace Sklep_WPF.CurrentSession
             };
             for (var i = 0; i < cartProducts.Count; i++)
             {
-                if (_product.name == cartProducts[i].name) //       !!! zmienić na id po podłączeniu do bazy !!!
+                if (_product.id == cartProducts[i].id)
                 {
                     cartProducts[i].quantity++;
                     counted = true;
@@ -53,7 +53,7 @@ namespace Sklep_WPF.CurrentSession
         {
             for (var i = 0; i < cartProducts.Count; i++)
             {
-                if (product.name == cartProducts[i].name) //       !!! zmienić na id po podłączeniu do bazy !!!
+                if (product.id == cartProducts[i].id)
                 {
                     cartProducts[i].quantity--;
                     cartProducts.ResetItem(i);
