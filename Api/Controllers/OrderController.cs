@@ -41,9 +41,9 @@ namespace Api.Controllers
                 if (u == null) return new BadRequestResult();
 
 
-                Address addr = ((List<Address>)db.Users
+                Address addr = (db.Users
                     .Where(x => x.Id == u.Id)
-                    .Select(x => x.adresy))
+                    .Select(x => x.adresy)).FirstOrDefault()
                     .Where(p => p.id == order.adres_id)
                     .FirstOrDefault();
 
@@ -120,9 +120,12 @@ namespace Api.Controllers
             User u = await userManager
                 .GetUserAsync(HttpContext.User);
             if (u == null) return new BadRequestResult();
-            return await db.Orders
+            var result = db.Orders
                 .Where(x => x.user.Id == u.Id)
-                .Select(x=> new OrderView(x)).ToListAsync();
+                .Include(x=>x.adres)
+                .Include(x=>x.pozycje).ThenInclude(x=>x.produkt)
+                .Select(x => new OrderView(x)).ToList();
+            return result;
         }
     }
 }

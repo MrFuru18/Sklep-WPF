@@ -14,8 +14,9 @@ namespace Api.Model.ViewModel
         public OrderItemView(OrderItem item)
         {
             ilosc = item.ilosc;
-            cena_1 = item.produkt.cena;
+            cena_1 = item.cena_1;
             produkt_id = item.produkt.id;
         }
+        public OrderItemView() { }
     }
 }

@@ -13,11 +13,23 @@ namespace Api.Model.ViewModel
         public DateTime data_zlozenia { get; set; }
         public OrderState Stan { get; set; }
 
+        public OrderView(Order order, List<OrderItem> items, Address adres)
+        {
+            id = order.id;
+            pozycje = new List<OrderItemView>();
+            foreach(OrderItem x in items)
+            {
+                pozycje.Add(new OrderItemView(x));
+            }
+            adres_id = adres.id;
+            data_zlozenia = order.data_zlozenia;
+            Stan = order.Stan;
+        }
         public OrderView(Order order)
         {
             id = order.id;
             pozycje = new List<OrderItemView>();
-            foreach(OrderItem x in order.pozycje)
+            foreach (OrderItem x in order.pozycje)
             {
                 pozycje.Add(new OrderItemView(x));
             }
@@ -25,5 +37,6 @@ namespace Api.Model.ViewModel
             data_zlozenia = order.data_zlozenia;
             Stan = order.Stan;
         }
+        public OrderView() { }
     }
 }
