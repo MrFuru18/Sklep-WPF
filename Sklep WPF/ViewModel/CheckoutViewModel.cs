@@ -167,7 +167,6 @@ namespace Sklep_WPF.ViewModel
                     else
                     {
                         bool addressAlreadyExists = false;
-                        bool addressIsCorrect = false;
                         Address selectedAddress = new Address()
                         {
                             ulica = Street,
@@ -181,7 +180,6 @@ namespace Sklep_WPF.ViewModel
                             if (address.ulica == Street && address.nr == long.Parse(Number) && address.nr_mieszkania == long.Parse(ApartmentNumber) && address.kod_pocztowy == PostalCode && address.miejscowosc == City)
                             {
                                 addressAlreadyExists = true;
-                                addressIsCorrect = true;
                                 selectedAddress = address;
                             }
                         }
@@ -193,12 +191,12 @@ namespace Sklep_WPF.ViewModel
                             {
                                 if (address.ulica == Street && address.nr == long.Parse(Number) && address.nr_mieszkania == long.Parse(ApartmentNumber) && address.kod_pocztowy == PostalCode && address.miejscowosc == City)
                                 {
-                                    addressIsCorrect = true;
+                                    addressAlreadyExists = true;
                                     selectedAddress = address;
                                 }
                             }
                         }
-                        if (addressIsCorrect)
+                        if (addressAlreadyExists)
                         {
                             List<OrderItem> orderItems = new List<OrderItem>();
                             foreach (var item in _productStore.cartProducts)
