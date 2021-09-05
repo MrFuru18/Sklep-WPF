@@ -9,7 +9,7 @@ namespace Api.Model
 {
     public class DB : IdentityDbContext<User>// DbContext
     {
-        public DbSet<User> Users { get; set; }
+        public override DbSet<User> Users { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
