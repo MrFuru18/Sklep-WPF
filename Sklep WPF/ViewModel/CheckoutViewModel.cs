@@ -166,37 +166,56 @@ namespace Sklep_WPF.ViewModel
                     }
                     else
                     {
-                       bool addressAlreadyExist = false;
-                       foreach (var address in addresses)
+                        Address selectedAddress = new Address()
+                        {
+                            ulica = Street,
+                            nr = long.Parse(Number),
+                            nr_mieszkania = long.Parse(ApartmentNumber),
+                            kod_pocztowy = PostalCode,
+                            miejscowosc = City
+                        };
+                        bool addressAlreadyExists = false;
+                        foreach (var address in addresses)
                         {
                             if (address.ulica == Street && address.nr == long.Parse(Number) && address.nr_mieszkania == long.Parse(ApartmentNumber) && address.kod_pocztowy == PostalCode && address.miejscowosc == City)
                             {
-                                addressAlreadyExist = true;
+                                addressAlreadyExists = true;
+                                selectedAddress = address;
                             }
                         }
-                       if (!addressAlreadyExist) 
-                       {
-                            Address selectedAddress = new Address()
-                            {
-                                ulica = Street,
-                                nr = long.Parse(Number),
-                                nr_mieszkania = long.Parse(ApartmentNumber),
-                                kod_pocztowy = PostalCode,
-                                miejscowosc = City
-                            };
+                        if (!addressAlreadyExists) 
+                        {
                             selectedAddress = AddressRepo.addAddress(selectedAddress).Result;
+                            addresses = AddressRepo.getAllAddresses().Result;
+                            foreach (var address in addresses)
+                            {
+                                if (address.ulica == Street && address.nr == long.Parse(Number) && address.nr_mieszkania == long.Parse(ApartmentNumber) && address.kod_pocztowy == PostalCode && address.miejscowosc == City)
+                                {
+                                    selectedAddress = address;
+                                }
+                            }
                         }
-                        /*
-                         Do zaimplementowania
+                        
+                        List<OrderItem> orderItems = new List<OrderItem>();
+                        foreach (var item in _productStore.cartProducts)
+                        {
+                            OrderItem orderItem = new OrderItem()
+                            {
+                                produkt_id = item.id,
+                                ilosc = item.quantity
+                            };
+                            orderItems.Add(orderItem);
+                        }
 
-                        złożenie zamówienia
-                         */
-
-                        //MessageBox.Show("Zamówienie złożono pomyślnie\n" + " " + Name + " " + Surname + " " + Street + " " + Number + " " + ApartmentNumber + " " + PostalCode + " " + City + " " + PhoneNumber);
+                        Order order = new Order()
+                        {
+                            adres_id = selectedAddress.id,
+                            pozycje = orderItems
+                        };
+                        order = OrderRepo.makeOrder(order).Result;
+                        MessageBox.Show("Zamówienie złożono pomyślnie");
                         _productStore.ClearCart();
                         _navigate.CurrentPage = new CartViewModel(_accountStore, _productStore, _navigate);
-
-
                     }
 
                 }, p => true));
