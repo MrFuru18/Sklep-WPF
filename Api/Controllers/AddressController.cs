@@ -57,8 +57,6 @@ namespace Api.Controllers
                 nr_mieszkania = addressView.nr_mieszkania,
                 ulica = addressView.ulica
             });
-            //db.Addresses.Add(u.adresy.Last());
-            //db.Users.Update(u);
             db.SaveChanges();
             return addressView;
         }

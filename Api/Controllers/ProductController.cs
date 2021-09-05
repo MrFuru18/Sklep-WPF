@@ -42,15 +42,5 @@ namespace Api.Controllers
                 .ToListAsync();
         }
 
-        [HttpGet]
-        [Route("getAllAuth")]
-        [Authorize]
-        public async Task<ActionResult<IEnumerable<ProductView>>> getProducts()
-        {
-            return await db.Products
-                .Select(x => new ProductView(x))
-                .ToListAsync();
-        }
-
     }
 }
