@@ -166,6 +166,8 @@ namespace Sklep_WPF.ViewModel
                     }
                     else
                     {
+                        bool addressAlreadyExists = false;
+                        bool addressIsCorrect = false;
                         Address selectedAddress = new Address()
                         {
                             ulica = Street,
@@ -174,12 +176,12 @@ namespace Sklep_WPF.ViewModel
                             kod_pocztowy = PostalCode,
                             miejscowosc = City
                         };
-                        bool addressAlreadyExists = false;
                         foreach (var address in addresses)
                         {
                             if (address.ulica == Street && address.nr == long.Parse(Number) && address.nr_mieszkania == long.Parse(ApartmentNumber) && address.kod_pocztowy == PostalCode && address.miejscowosc == City)
                             {
                                 addressAlreadyExists = true;
+                                addressIsCorrect = true;
                                 selectedAddress = address;
                             }
                         }
@@ -191,31 +193,37 @@ namespace Sklep_WPF.ViewModel
                             {
                                 if (address.ulica == Street && address.nr == long.Parse(Number) && address.nr_mieszkania == long.Parse(ApartmentNumber) && address.kod_pocztowy == PostalCode && address.miejscowosc == City)
                                 {
+                                    addressIsCorrect = true;
                                     selectedAddress = address;
                                 }
                             }
                         }
-                        
-                        List<OrderItem> orderItems = new List<OrderItem>();
-                        foreach (var item in _productStore.cartProducts)
+                        if (addressIsCorrect)
                         {
-                            OrderItem orderItem = new OrderItem()
+                            List<OrderItem> orderItems = new List<OrderItem>();
+                            foreach (var item in _productStore.cartProducts)
                             {
-                                produkt_id = item.id,
-                                ilosc = item.quantity
-                            };
-                            orderItems.Add(orderItem);
-                        }
+                                OrderItem orderItem = new OrderItem()
+                                {
+                                    produkt_id = item.id,
+                                    ilosc = item.quantity
+                                };
+                                orderItems.Add(orderItem);
+                            }
 
-                        Order order = new Order()
-                        {
-                            adres_id = selectedAddress.id,
-                            pozycje = orderItems
-                        };
-                        order = OrderRepo.makeOrder(order).Result;
-                        MessageBox.Show("Zamówienie złożono pomyślnie");
-                        _productStore.ClearCart();
-                        _navigate.CurrentPage = new CartViewModel(_accountStore, _productStore, _navigate);
+                            Order order = new Order()
+                            {
+                                adres_id = selectedAddress.id,
+                                pozycje = orderItems
+                            };
+                            order = OrderRepo.makeOrder(order).Result;
+                            MessageBox.Show("Zamówienie złożono pomyślnie");
+                            _productStore.ClearCart();
+                            _navigate.CurrentPage = new CartViewModel(_accountStore, _productStore, _navigate);
+                        }
+                        else
+                            MessageBox.Show("Dane adresowe nie istnieją");
+                        
                     }
 
                 }, p => true));
