@@ -157,10 +157,9 @@ namespace Sklep_WPF.ViewModel
             {
                 return _placeOrder ?? (_placeOrder = new RelayCommand((p) =>
                 {
-                    long value;
                     if (string.IsNullOrWhiteSpace(Name)|| string.IsNullOrWhiteSpace(Surname) || string.IsNullOrWhiteSpace(Street) || string.IsNullOrWhiteSpace(Number) || string.IsNullOrWhiteSpace(ApartmentNumber) || string.IsNullOrWhiteSpace(PostalCode) || string.IsNullOrWhiteSpace(City) || string.IsNullOrWhiteSpace(PhoneNumber))
                         MessageBox.Show("Pola nie mogą być puste");
-                    else if (!long.TryParse(Number, out value) || !long.TryParse(Number, out value))
+                    else if (!long.TryParse(Number, out long value) || !long.TryParse(Number, out value))
                     {
                         MessageBox.Show("Format nieprawidłowy");
                     }
