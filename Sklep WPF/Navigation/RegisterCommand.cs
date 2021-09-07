@@ -40,6 +40,10 @@ namespace Sklep_WPF.Navigation
             {
                 MessageBox.Show("Hasło musi mieć przynajmniej 8 znaków");
             }
+            else if (!long.TryParse(account.phoneNumber, out long value) || !long.TryParse(account.phoneNumber, out value))
+            {
+                MessageBox.Show("Numer telefonu nieprawidłowy");
+            }
             else
             {
                 _accountStore.CurrentAccount = UserRepo.Register(account).Result;
