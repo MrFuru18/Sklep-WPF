@@ -118,7 +118,7 @@
     <Compile Include="DAL\Encje\OrderItem.cs" />
     <Compile Include="DAL\Encje\Order.cs" />
     <Compile Include="DAL\Encje\Product.cs" />
-    <Compile Include="Model\User.cs" />
+    <Compile Include="DAL\Encje\User.cs" />
     <Compile Include="DAL\Repozytoria\AddressRepo.cs" />
     <Compile Include="DAL\Repozytoria\ProductRepo.cs" />
     <Compile Include="DAL\Repozytoria\UserRepo.cs" />
