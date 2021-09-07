@@ -17,6 +17,7 @@ namespace Sklep_WPF.Navigation
             get => _currentPage;
             set
             {
+                _currentPage?.Dispose();
                 _currentPage = value;
                 OnCurrentPageChanged();
             }
