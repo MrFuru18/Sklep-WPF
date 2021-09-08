@@ -46,7 +46,7 @@
                  Padding="5"
                  FontSize="20"
                  Margin="0,10,0,0"
-                 Text="{Binding Search}"/>
+                 Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}"/>
 
         <!-- Sort by ComboBox -->
         <TextBlock Grid.Row="1"
