@@ -9,12 +9,11 @@ using System.Windows;
 using Sklep_WPF.Navigation;
 using Sklep_WPF.Model;
 using Sklep_WPF.CurrentSession;
+using Sklep_WPF.Navigation.PopupService;
 
 namespace Sklep_WPF.ViewModel
 {
     using BaseClass;
-    using Sklep_WPF.CurrentSession;
-    using System.Security;
     class SignupViewModel : ViewModelBase
     {
         #region properties
@@ -67,9 +66,9 @@ namespace Sklep_WPF.ViewModel
 
         public ICommand Signup { get; }
 
-        public SignupViewModel(AccountStore accountStore, Navigate navigate)
+        public SignupViewModel(AccountStore accountStore, Navigate navigate, IDialogService dialogService)
         {
-            Signup = new RegisterCommand(this, accountStore, navigate);
+            Signup = new RegisterCommand(this, accountStore, navigate, dialogService);
         }
 
     }

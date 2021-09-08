@@ -70,15 +70,28 @@
     <Compile Include="Navigation\LogoutCommand.cs" />
     <Compile Include="Navigation\Navigate.cs" />
     <Compile Include="Navigation\NavigateCommand.cs" />
+    <Compile Include="Navigation\PopupService\DialogResult.cs" />
+    <Compile Include="Navigation\PopupService\DialogService.cs" />
+    <Compile Include="Navigation\PopupService\DialogViewModelBase.cs" />
+    <Compile Include="Navigation\PopupService\IDialogService.cs" />
+    <Compile Include="Navigation\PopupService\IDialogWindow.cs" />
+    <Compile Include="Navigation\PopupService\RelayCommand.cs" />
     <Compile Include="Navigation\RegisterCommand.cs" />
     <Compile Include="ViewModel\CartViewModel.cs" />
     <Compile Include="ViewModel\CheckoutViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\OrderHistoryViewModel.cs" />
+    <Compile Include="ViewModel\PopupVM\AlertDialogViewModel.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\ShopViewModel.cs" />
     <Compile Include="ViewModel\SignupViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
+    <Compile Include="View\Popups\AlertDialogView.xaml.cs">
+      <DependentUpon>AlertDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Popups\Popup.xaml.cs">
+      <DependentUpon>Popup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Views\CartPage.xaml.cs">
       <DependentUpon>CartPage.xaml</DependentUpon>
     </Compile>
@@ -132,6 +145,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\Popups\AlertDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Popups\Popup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Views\CartPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -217,5 +238,6 @@
   <ItemGroup>
     <Resource Include="View\Images\storefront_black_36dp.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

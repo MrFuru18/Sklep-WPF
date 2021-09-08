@@ -8,13 +8,15 @@ using System.Windows;
 using System.Windows.Input;
 using System.ComponentModel;
 using Sklep_WPF.DAL.Repozytoria;
+using Sklep_WPF.CurrentSession;
+using Sklep_WPF.Model;
+using Sklep_WPF.Navigation;
+using Sklep_WPF.Navigation.PopupService;
+using Sklep_WPF.ViewModel.PopupVM;
 
 namespace Sklep_WPF.ViewModel
 {
     using BaseClass;
-    using Sklep_WPF.CurrentSession;
-    using Sklep_WPF.Model;
-    using Sklep_WPF.Navigation;
     using System.ComponentModel;
 
     class CheckoutViewModel : ViewModelBase
@@ -22,14 +24,16 @@ namespace Sklep_WPF.ViewModel
         private readonly AccountStore _accountStore;
         private readonly CartProductStore _productStore;
         private readonly Navigate _navigate;
+        private readonly IDialogService _dialogService;
 
         public List<Address> addresses { get; set; }
 
-        public CheckoutViewModel(AccountStore accountStore, CartProductStore productStore, Navigate navigate)
+        public CheckoutViewModel(AccountStore accountStore, CartProductStore productStore, Navigate navigate, IDialogService dialogService)
         {
             _accountStore = accountStore;
             _productStore = productStore;
             _navigate = navigate;
+            _dialogService = dialogService;
 
             Price = _productStore.ShowPrice();
 
@@ -158,10 +162,12 @@ namespace Sklep_WPF.ViewModel
                 return _placeOrder ?? (_placeOrder = new RelayCommand((p) =>
                 {
                     if (string.IsNullOrWhiteSpace(Name)|| string.IsNullOrWhiteSpace(Surname) || string.IsNullOrWhiteSpace(Street) || string.IsNullOrWhiteSpace(Number) || string.IsNullOrWhiteSpace(ApartmentNumber) || string.IsNullOrWhiteSpace(PostalCode) || string.IsNullOrWhiteSpace(City) || string.IsNullOrWhiteSpace(PhoneNumber))
-                        MessageBox.Show("Pola nie mogą być puste");
+                    {
+                        var result = _dialogService.OpenDialog(new AlertDialogViewModel("Pola nie mogą być puste"));
+                    }
                     else if (!long.TryParse(Number, out long value) || !long.TryParse(Number, out value))
                     {
-                        MessageBox.Show("Format nieprawidłowy");
+                        var result = _dialogService.OpenDialog(new AlertDialogViewModel("Format nieprawidłowy"));
                     }
                     else
                     {
@@ -214,12 +220,14 @@ namespace Sklep_WPF.ViewModel
                                 pozycje = orderItems
                             };
                             order = OrderRepo.makeOrder(order).Result;
-                            MessageBox.Show("Zamówienie złożono pomyślnie");
+                            var result = _dialogService.OpenDialog(new AlertDialogViewModel("Zamówienie złożono pomyślnie"));
                             _productStore.ClearCart();
-                            _navigate.CurrentPage = new CartViewModel(_accountStore, _productStore, _navigate);
+                            _navigate.CurrentPage = new CartViewModel(_accountStore, _productStore, _navigate, _dialogService);
                         }
                         else
-                            MessageBox.Show("Dane adresowe nie istnieją");
+                        {
+                            var result = _dialogService.OpenDialog(new AlertDialogViewModel("Dane adresowe nie istnieją"));
+                        }
                         
                     }
 

@@ -27,5 +27,6 @@ namespace Sklep_WPF.ViewModel.BaseClass
                 }
             }
         }
+        public virtual void Dispose() { }
     }
 }

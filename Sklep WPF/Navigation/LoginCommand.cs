@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Sklep_WPF.DAL.Repozytoria;
+using Sklep_WPF.Navigation.PopupService;
+using Sklep_WPF.ViewModel.PopupVM;
 
 namespace Sklep_WPF.Navigation
 {
@@ -16,12 +18,14 @@ namespace Sklep_WPF.Navigation
         private readonly LoginViewModel _viewModel;
         private readonly AccountStore _accountStore;
         private readonly Navigate _navigate;
+        private readonly IDialogService _dialogService;
 
-        public LoginCommand(LoginViewModel viewModel, AccountStore accountStore ,Navigate navigate)
+        public LoginCommand(LoginViewModel viewModel, AccountStore accountStore ,Navigate navigate,IDialogService dialogService)
         {
             _viewModel = viewModel;
             _accountStore = accountStore;
             _navigate = navigate;
+            _dialogService = dialogService;
         }
         public override void Execute(object p)
         {
@@ -32,14 +36,18 @@ namespace Sklep_WPF.Navigation
             };
 
             if (string.IsNullOrWhiteSpace(account.email) || string.IsNullOrWhiteSpace(account.password))
-                MessageBox.Show("Pola nie mogą być puste");
+            {
+                var result = _dialogService.OpenDialog(new AlertDialogViewModel("Pola nie mogą być puste"));
+            }
             else
             {
                 _accountStore.CurrentAccount = UserRepo.Login(account).Result;
                 if (_accountStore.IsLoggedIn)
-                    _navigate.CurrentPage = new UserViewModel(_accountStore);
+                    _navigate.CurrentPage = new UserViewModel(_accountStore, _dialogService);
                 else
-                    MessageBox.Show("Dane logowania nieprawidłowe");
+                {
+                    var result = _dialogService.OpenDialog(new AlertDialogViewModel("Dane logowania nieprawidłowe"));
+                }
             }
         }
     }

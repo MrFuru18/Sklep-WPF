@@ -8,6 +8,7 @@ using System.Windows;
 using Sklep_WPF.ViewModel;
 using Sklep_WPF.Navigation;
 using Sklep_WPF.CurrentSession;
+using Sklep_WPF.Navigation.PopupService;
 
 namespace Sklep_WPF
 {
@@ -18,15 +19,16 @@ namespace Sklep_WPF
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            IDialogService dialogService = new DialogService();
             AccountStore accountStore = new AccountStore();
             CartProductStore productStore = new CartProductStore();
             Navigate navigate = new Navigate();
 
-            navigate.CurrentPage = new LoginViewModel(accountStore, navigate);
+            navigate.CurrentPage = new LoginViewModel(accountStore, navigate, dialogService);
 
             MainWindow = new MainWindow()
             {
-                DataContext = new MainViewModel(accountStore, productStore, navigate)
+                DataContext = new MainViewModel(accountStore, productStore, navigate, dialogService)
             };
 
             MainWindow.Show();

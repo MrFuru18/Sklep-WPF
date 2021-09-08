@@ -7,27 +7,30 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
+using Sklep_WPF.Model;
 using Sklep_WPF.Navigation;
+using Sklep_WPF.CurrentSession;
+using Sklep_WPF.Navigation.PopupService;
+using Sklep_WPF.ViewModel.PopupVM;
 
 namespace Sklep_WPF.ViewModel
 {
     using BaseClass;
-    using Sklep_WPF.Model;
-    using Sklep_WPF.CurrentSession;
-
     class CartViewModel : ViewModelBase
     {
         private readonly AccountStore _accountStore;
         private readonly CartProductStore _productStore;
         private readonly Navigate _navigate;
+        private readonly IDialogService _dialogService;
 
         public BindingList<ProductCart> cartProducts => _productStore?.cartProducts; //{ get; set; }
 
-        public CartViewModel(AccountStore accountStore, CartProductStore productStore, Navigate navigate)
+        public CartViewModel(AccountStore accountStore, CartProductStore productStore, Navigate navigate, IDialogService dialogService)
         {
             _accountStore = accountStore;
             _productStore = productStore;
             _navigate = navigate;
+            _dialogService = dialogService;
 
             //cartProducts = _productStore.cartProducts;
         }
@@ -57,12 +60,16 @@ namespace Sklep_WPF.ViewModel
                     if (_accountStore.IsLoggedIn)
                     {
                         if (_productStore.IsEmpty == true)
-                            _navigate.CurrentPage = new CheckoutViewModel(_accountStore, _productStore, _navigate);
+                            _navigate.CurrentPage = new CheckoutViewModel(_accountStore, _productStore, _navigate, _dialogService);
                         else
-                            MessageBox.Show("Koszyk jest pusty");
+                        {
+                            var result = _dialogService.OpenDialog(new AlertDialogViewModel("Koszyk jest pusty"));
+                        }
                     }
                     else
-                        MessageBox.Show("Musisz być zalogowany");
+                    {
+                        var result = _dialogService.OpenDialog(new AlertDialogViewModel("Musisz być zalogowany"));
+                    }
                     
 
                 }, p => true));
