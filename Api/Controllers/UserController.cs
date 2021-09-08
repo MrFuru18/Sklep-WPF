@@ -50,7 +50,7 @@ namespace Api.Controllers
         [HttpPost]
         [Route("Register")]
         [AllowAnonymous]
-        public async Task<ActionResult<UserView>> Register(RegisterModel model)
+        public async Task<IdentityResult> Register(RegisterModel model)
         {
             User u = new()
             {
@@ -61,13 +61,7 @@ namespace Api.Controllers
                 PhoneNumber=model.phoneNumber
             };
             IdentityResult r = await userManager.CreateAsync(u, model.password);
-            if (r.Succeeded)
-            {
-                db.Users.Add(u);
-                db.SaveChanges();
-                return Login(new LoginModel() { email = model.email, password = model.password }).Result;
-            }
-            return null;
+            return r;
         }
 
         [HttpGet]
