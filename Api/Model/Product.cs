@@ -16,6 +16,5 @@ namespace Api.Model
         public double cena { get; set; }
         public long dostepna_ilosc { get; set; }
         public string opis { get; set; }
-        public virtual ICollection<Image> obrazy { get; set; }
     }
 }

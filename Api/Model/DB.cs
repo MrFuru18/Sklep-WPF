@@ -14,7 +14,6 @@ namespace Api.Model
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<Image> Imager { get; set; }
 
         public DB(DbContextOptions<DB> opt) : base(opt)
         {
@@ -39,9 +38,6 @@ namespace Api.Model
                 .HasKey(x => x.id);
 
             builder.Entity<Product>()
-                .HasKey(x => x.id);
-
-            builder.Entity<Image>()
                 .HasKey(x => x.id);
 
             base.OnModelCreating(builder);
