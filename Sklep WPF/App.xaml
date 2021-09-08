@@ -22,8 +22,8 @@
         <DataTemplate DataType="{x:Type vm:OrderHistoryViewModel}">
             <views:OrderHistoryPage/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type vm:SettingsViewModel}">
-            <views:SettingsPage/>
+        <DataTemplate DataType="{x:Type vm:InfoViewModel}">
+            <views:InfoPage/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type vm:SignupViewModel}">
             <views:SignupPage/>

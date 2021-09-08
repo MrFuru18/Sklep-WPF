@@ -9,7 +9,7 @@ using System.Windows.Input;
 namespace Sklep_WPF.ViewModel
 {
     using BaseClass;
-    class SettingsViewModel : ViewModelBase
+    class InfoViewModel : ViewModelBase
     {
        
         private ICommand _github;

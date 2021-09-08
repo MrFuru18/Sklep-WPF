@@ -84,7 +84,7 @@
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\OrderHistoryViewModel.cs" />
     <Compile Include="ViewModel\PopupVM\AlertDialogViewModel.cs" />
-    <Compile Include="ViewModel\SettingsViewModel.cs" />
+    <Compile Include="ViewModel\InfoViewModel.cs" />
     <Compile Include="ViewModel\ShopViewModel.cs" />
     <Compile Include="ViewModel\SignupViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
@@ -106,8 +106,8 @@
     <Compile Include="View\Views\OrderHistoryPage.xaml.cs">
       <DependentUpon>OrderHistoryPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Views\SettingsPage.xaml.cs">
-      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    <Compile Include="View\Views\InfoPage.xaml.cs">
+      <DependentUpon>InfoPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Views\ShopPage.xaml.cs">
       <DependentUpon>ShopPage.xaml</DependentUpon>
@@ -171,7 +171,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Views\SettingsPage.xaml">
+    <Page Include="View\Views\InfoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -240,6 +240,8 @@
   <ItemGroup>
     <Resource Include="View\Images\storefront_black_36dp.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="View\Images\info_black_36dp.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -18,9 +18,9 @@ namespace Sklep_WPF.View.Views
     /// <summary>
     /// Logika interakcji dla klasy SettingsPage.xaml
     /// </summary>
-    public partial class SettingsPage : UserControl
+    public partial class InfoPage : UserControl
     {
-        public SettingsPage()
+        public InfoPage()
         {
             InitializeComponent();
         }

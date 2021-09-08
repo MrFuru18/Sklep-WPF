@@ -91,15 +91,15 @@
                 </StackPanel>
             </Button>
 
-            <!-- Settings Button -->
-            <Button x:Name="Settings_button"
+            <!-- Info Button -->
+            <Button x:Name="Info_button"
                     Margin="5"
-                    Command="{Binding UptadeViewCommand}" CommandParameter="Settings">
+                    Command="{Binding UptadeViewCommand}" CommandParameter="Info">
                 <StackPanel>
-                    <Image  Source="Images/settings_black_36dp.png"
+                    <Image  Source="Images/info_black_36dp.png"
                             Stretch="None"/>
-                    <TextBlock  x:Name="Settings_textblock"
-                                Text="Ustawienia"
+                    <TextBlock  x:Name="Info_textblock"
+                                Text="Informacje"
                                 HorizontalAlignment="Center"
                                 FontSize="20"/>
                 </StackPanel>

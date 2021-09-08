@@ -67,9 +67,9 @@ namespace Sklep_WPF.ViewModel
                     {
                         _navigate.CurrentPage = new OrderHistoryViewModel();
                     }
-                    else if (p.ToString() == "Settings")
+                    else if (p.ToString() == "Info")
                     {
-                        _navigate.CurrentPage = new SettingsViewModel();
+                        _navigate.CurrentPage = new InfoViewModel();
                     }
                     else if (p.ToString() == "Login")
                     {

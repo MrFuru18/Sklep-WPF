@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="Sklep_WPF.View.Views.InfoPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Sklep_WPF.View.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="860">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0"
+                   Text="Informacje"
+                   HorizontalAlignment="Center"
+                   FontSize="30"
+                   Margin="0,10,0,0"/>
+
+        <StackPanel Grid.Row="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom">
+            <TextBlock FontSize="20"
+                       Text="Projekt zaliczeniowy na Programowanie Obiektowe i Graficzne sem. 4"
+                       Margin="0,0,0,0"/>
+        </StackPanel>
+        <!-- Github Button -->
+        <StackPanel Grid.Row="2"
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center">
+            <TextBlock HorizontalAlignment="Center"
+                       FontSize="20"
+                       Text="Repozytorium"
+                       Margin="0,0,0,5"/>
+            <Button x:Name="Github_button"
+                Background="Transparent"
+                Width="100"
+                Height="100"
+                Command="{Binding Github}" CommandParameter="User">
+                <StackPanel>
+                    <Image Source="/View/Images/github.png" 
+                       Stretch="None"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        
+    </Grid>
+</UserControl>
