@@ -31,18 +31,18 @@ namespace Sklep_WPF.DAL.Repozytoria
             ClientHttp.Client.GetAsync("User/Logout");
         }
 
-        public static async Task<User> Register(RegisterModel model)
+        public static async Task<RegisterResult> Register(RegisterModel model)
         {
-            User user = null;
+            RegisterResult result = null;
             HttpRequestMessage req = new HttpRequestMessage(HttpMethod.Post, "User/Register");
             req.Content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
             HttpResponseMessage responseMessage = await ClientHttp.Client.SendAsync(req).ConfigureAwait(false);
             if (responseMessage.IsSuccessStatusCode)
             {
                 string jsonResult = await responseMessage.Content.ReadAsStringAsync();
-                user = JsonConvert.DeserializeObject<User>(jsonResult);
+                result = JsonConvert.DeserializeObject<RegisterResult>(jsonResult);
             }
-            return user;
+            return result;
         }
     }
 }

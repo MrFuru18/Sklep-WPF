@@ -52,9 +52,19 @@ namespace Sklep_WPF.Navigation
             }
             else
             {
-                _accountStore.CurrentAccount = UserRepo.Register(account).Result;
-                var result = _dialogService.OpenDialog(new AlertDialogViewModel("Konto zostało założone"));
-                _navigate.CurrentPage = new LoginViewModel(_accountStore, _navigate, _dialogService);
+                RegisterResult res = UserRepo.Register(account).Result;
+                if(res!=null)
+                {
+                    if(res.succeeded)
+                    {
+                        var result = _dialogService.OpenDialog(new AlertDialogViewModel("Konto zostało założone"));
+                        _navigate.CurrentPage = new LoginViewModel(_accountStore, _navigate, _dialogService);
+                    }
+                    else
+                    {
+                        _dialogService.OpenDialog(new AlertDialogViewModel($"{res.errors[0].description}"));
+                    }
+                }
             }
         }
 
