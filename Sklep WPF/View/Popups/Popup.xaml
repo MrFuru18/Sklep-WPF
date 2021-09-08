@@ -9,7 +9,7 @@
         ResizeMode="NoResize"
         WindowStyle="None"
         AllowsTransparency="True"
-        Title="Popup" Height="150" Width="300">
+        Title="Popup" Height="160" Width="320">
     <Border>
         <Border.Effect>
             <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.8" 
