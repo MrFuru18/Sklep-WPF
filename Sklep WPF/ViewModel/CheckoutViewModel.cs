@@ -12,6 +12,7 @@ using Sklep_WPF.CurrentSession;
 using Sklep_WPF.Model;
 using Sklep_WPF.Navigation;
 using Sklep_WPF.Navigation.PopupService;
+using Sklep_WPF.ViewModel.PopupVM;
 
 namespace Sklep_WPF.ViewModel
 {
@@ -161,10 +162,12 @@ namespace Sklep_WPF.ViewModel
                 return _placeOrder ?? (_placeOrder = new RelayCommand((p) =>
                 {
                     if (string.IsNullOrWhiteSpace(Name)|| string.IsNullOrWhiteSpace(Surname) || string.IsNullOrWhiteSpace(Street) || string.IsNullOrWhiteSpace(Number) || string.IsNullOrWhiteSpace(ApartmentNumber) || string.IsNullOrWhiteSpace(PostalCode) || string.IsNullOrWhiteSpace(City) || string.IsNullOrWhiteSpace(PhoneNumber))
-                        MessageBox.Show("Pola nie mogą być puste");
+                    {
+                        var result = _dialogService.OpenDialog(new AlertDialogViewModel("Pola nie mogą być puste"));
+                    }
                     else if (!long.TryParse(Number, out long value) || !long.TryParse(Number, out value))
                     {
-                        MessageBox.Show("Format nieprawidłowy");
+                        var result = _dialogService.OpenDialog(new AlertDialogViewModel("Format nieprawidłowy"));
                     }
                     else
                     {
@@ -217,12 +220,14 @@ namespace Sklep_WPF.ViewModel
                                 pozycje = orderItems
                             };
                             order = OrderRepo.makeOrder(order).Result;
-                            MessageBox.Show("Zamówienie złożono pomyślnie");
+                            var result = _dialogService.OpenDialog(new AlertDialogViewModel("Zamówienie złożono pomyślnie"));
                             _productStore.ClearCart();
                             _navigate.CurrentPage = new CartViewModel(_accountStore, _productStore, _navigate, _dialogService);
                         }
                         else
-                            MessageBox.Show("Dane adresowe nie istnieją");
+                        {
+                            var result = _dialogService.OpenDialog(new AlertDialogViewModel("Dane adresowe nie istnieją"));
+                        }
                         
                     }
 

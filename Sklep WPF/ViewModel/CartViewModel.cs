@@ -11,6 +11,7 @@ using Sklep_WPF.Model;
 using Sklep_WPF.Navigation;
 using Sklep_WPF.CurrentSession;
 using Sklep_WPF.Navigation.PopupService;
+using Sklep_WPF.ViewModel.PopupVM;
 
 namespace Sklep_WPF.ViewModel
 {
@@ -61,10 +62,14 @@ namespace Sklep_WPF.ViewModel
                         if (_productStore.IsEmpty == true)
                             _navigate.CurrentPage = new CheckoutViewModel(_accountStore, _productStore, _navigate, _dialogService);
                         else
-                            MessageBox.Show("Koszyk jest pusty");
+                        {
+                            var result = _dialogService.OpenDialog(new AlertDialogViewModel("Koszyk jest pusty"));
+                        }
                     }
                     else
-                        MessageBox.Show("Musisz być zalogowany");
+                    {
+                        var result = _dialogService.OpenDialog(new AlertDialogViewModel("Musisz być zalogowany"));
+                    }
                     
 
                 }, p => true));

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using Sklep_WPF.DAL.Repozytoria;
 using Sklep_WPF.Navigation.PopupService;
+using Sklep_WPF.ViewModel.PopupVM;
 
 namespace Sklep_WPF.Navigation
 {
@@ -35,14 +36,18 @@ namespace Sklep_WPF.Navigation
             };
 
             if (string.IsNullOrWhiteSpace(account.email) || string.IsNullOrWhiteSpace(account.password))
-                MessageBox.Show("Pola nie mogą być puste");
+            {
+                var result = _dialogService.OpenDialog(new AlertDialogViewModel("Pola nie mogą być puste"));
+            }
             else
             {
                 _accountStore.CurrentAccount = UserRepo.Login(account).Result;
                 if (_accountStore.IsLoggedIn)
                     _navigate.CurrentPage = new UserViewModel(_accountStore, _dialogService);
                 else
-                    MessageBox.Show("Dane logowania nieprawidłowe");
+                {
+                    var result = _dialogService.OpenDialog(new AlertDialogViewModel("Dane logowania nieprawidłowe"));
+                }
             }
         }
     }

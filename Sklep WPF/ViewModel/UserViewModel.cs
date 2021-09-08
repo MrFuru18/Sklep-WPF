@@ -44,7 +44,7 @@ namespace Sklep_WPF.ViewModel
                     Address selectedAddress = new Address();
                     selectedAddress = (Address)p;
                     //addresses.Remove(selectedAddress);
-                    //MessageBox.Show("Adres usunięty");
+                    //var result = _dialogService.OpenDialog(new AlertDialogViewModel("Adres usunięty"));
 
                 }, p => true));
             }
