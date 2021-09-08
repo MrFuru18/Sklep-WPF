@@ -13,7 +13,6 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
-            <RowDefinition/>
             <RowDefinition Height="4*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -31,80 +30,89 @@
                    Margin="0,10,0,0"/>
 
         <!-- Email TextBlock -->
-        <TextBlock Grid.Row="2"
+        <TextBlock Grid.Row="1"
                    Grid.Column="0"
                    HorizontalAlignment="Right"
+                   VerticalAlignment="Bottom"
                    FontSize="20"
                    Margin="0,10,0,0"
                    Text="E-mail:"/>
         
-        <TextBlock Grid.Row="2"
+        <TextBlock Grid.Row="1"
                    Grid.Column="2"
                    HorizontalAlignment="Left"
+                   VerticalAlignment="Bottom"
                    FontSize="20"
                    Margin="0,10,0,0"
                    Text="{Binding Email}"/>
 
         <!-- Name TextBlock -->
-        <TextBlock Grid.Row="3"
+        <TextBlock Grid.Row="2"
                    Grid.Column="0"
                    HorizontalAlignment="Right"
+                   VerticalAlignment="Bottom"
                    FontSize="20"
                    Margin="0,10,0,0"
                    Text="Imię:"/>
 
-        <TextBlock Grid.Row="3"
+        <TextBlock Grid.Row="2"
                    Grid.Column="2"
                    HorizontalAlignment="Left"
+                   VerticalAlignment="Bottom"
                    FontSize="20"
                    Margin="0,10,0,0"
                    Text="{Binding Name}"/>
 
         <!-- Surname TextBlock -->
-        <TextBlock Grid.Row="4"
+        <TextBlock Grid.Row="3"
                    Grid.Column="0"
                    HorizontalAlignment="Right"
+                   VerticalAlignment="Bottom"
                    FontSize="20"
                    Margin="0,10,0,0"
                    Text="Nazwisko:"/>
 
-        <TextBlock Grid.Row="4"
+        <TextBlock Grid.Row="3"
                    Grid.Column="2"
                    HorizontalAlignment="Left"
+                   VerticalAlignment="Bottom"
                    FontSize="20"
                    Margin="0,10,0,0"
                    Text="{Binding Surname}"/>
 
         <!-- Phone Number TextBlock -->
-        <TextBlock Grid.Row="5"
+        <TextBlock Grid.Row="4"
                    Grid.Column="0"
                    HorizontalAlignment="Right"
+                   VerticalAlignment="Bottom"
                    FontSize="20"
                    Margin="0,10,0,0"
                    Text="Numer telefonu:"/>
 
-        <TextBlock Grid.Row="5"
+        <TextBlock Grid.Row="4"
                    Grid.Column="2"
                    HorizontalAlignment="Left"
+                   VerticalAlignment="Bottom"
                    FontSize="20"
                    Margin="0,10,0,0"
                    Text="{Binding PhoneNumber}"/>
 
         <!-- Address ListView -->
-        <TextBlock Grid.Row="6"
+        <TextBlock Grid.Row="5"
                    Grid.Column="0"
                    HorizontalAlignment="Right"
+                   VerticalAlignment="Center"
                    FontSize="20"
                    Margin="0,10,0,0"
                    Text="Zapisane adresy:"/>
 
         <ListView x:Name="Address_ListView"
-                  Grid.Row="6"
+                  Grid.Row="5"
                   Grid.Column="2"
                   Grid.ColumnSpan="3"
-                  Height="200"
+                  Height="185"
                   Width="405"
-                  VerticalAlignment="Top"
+                  VerticalAlignment="Center"
                   HorizontalAlignment="Left"
                   FontSize="20"
                   Margin="5,5,5,5"
