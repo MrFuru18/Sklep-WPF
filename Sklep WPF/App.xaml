@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Sklep_WPF"
              xmlns:views="clr-namespace:Sklep_WPF.View.Views"
-             xmlns:vm="clr-namespace:Sklep_WPF.ViewModel">
+             xmlns:vpop="clr-namespace:Sklep_WPF.View.Popups"
+             xmlns:vm="clr-namespace:Sklep_WPF.ViewModel"
+             xmlns:vmpop="clr-namespace:Sklep_WPF.ViewModel.PopupVM">
     <Application.Resources>
         <DataTemplate DataType="{x:Type vm:LoginViewModel}">
             <views:LoginPage/>
@@ -28,6 +30,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type vm:CheckoutViewModel}">
             <views:CheckoutPage/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vmpop:AlertDialogViewModel}">
+            <vpop:AlertDialogView/>
         </DataTemplate>
     </Application.Resources>
 </Application>

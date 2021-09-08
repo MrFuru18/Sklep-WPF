@@ -1,6 +1,7 @@
 ﻿using Sklep_WPF.CurrentSession;
 using Sklep_WPF.DAL.Repozytoria;
 using Sklep_WPF.Model;
+using Sklep_WPF.Navigation.PopupService;
 using Sklep_WPF.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -16,12 +17,14 @@ namespace Sklep_WPF.Navigation
         private readonly SignupViewModel _viewModel;
         private readonly AccountStore _accountStore;
         private readonly Navigate _navigate;
+        private readonly IDialogService _dialogService;
 
-        public RegisterCommand(SignupViewModel viewModel, AccountStore accountStore, Navigate navigate)
+        public RegisterCommand(SignupViewModel viewModel, AccountStore accountStore, Navigate navigate, IDialogService dialogService)
         {
             _viewModel = viewModel;
             _accountStore = accountStore;
             _navigate = navigate;
+            _dialogService = dialogService;
         }
         public override void Execute(object p)
         {
@@ -48,7 +51,7 @@ namespace Sklep_WPF.Navigation
             {
                 _accountStore.CurrentAccount = UserRepo.Register(account).Result;
                 MessageBox.Show("Konto zostało założone");
-                _navigate.CurrentPage = new LoginViewModel(_accountStore, _navigate);
+                _navigate.CurrentPage = new LoginViewModel(_accountStore, _navigate, _dialogService);
             }
         }
 

@@ -7,6 +7,8 @@ using System.Windows;
 using System.Windows.Input;
 using Sklep_WPF.Navigation;
 using Sklep_WPF.CurrentSession;
+using Sklep_WPF.Navigation.PopupService;
+using Sklep_WPF.ViewModel.PopupVM;
 
 namespace Sklep_WPF.ViewModel
 {
@@ -14,6 +16,7 @@ namespace Sklep_WPF.ViewModel
 
     class MainViewModel : ViewModelBase
     {
+        private readonly IDialogService _dialogService;
         private readonly AccountStore _accountStore;
         private readonly CartProductStore _productStore;
         private readonly Navigate _navigate;
@@ -24,13 +27,14 @@ namespace Sklep_WPF.ViewModel
 
         public ICommand LogoutCommand { get; }
 
-        public MainViewModel(AccountStore accountStore, CartProductStore productStore, Navigate navigate)
+        public MainViewModel(AccountStore accountStore, CartProductStore productStore, Navigate navigate, IDialogService dialogService)
         {
             _accountStore = accountStore;
             _productStore = productStore;
             _navigate = navigate;
+            _dialogService = dialogService;
             _navigate.CurrentPageChanged += OnCurrentPageChanged;
-            LogoutCommand = new LogoutCommand(accountStore, navigate);
+            LogoutCommand = new LogoutCommand(accountStore, navigate, dialogService);
         }
 
         private void OnCurrentPageChanged()
@@ -49,7 +53,7 @@ namespace Sklep_WPF.ViewModel
                 {
                     if (p.ToString() == "User")
                     {
-                        _navigate.CurrentPage = new UserViewModel(_accountStore);
+                        _navigate.CurrentPage = new UserViewModel(_accountStore, _dialogService);
                     }
                     else if (p.ToString() == "Shop")
                     {
@@ -57,7 +61,7 @@ namespace Sklep_WPF.ViewModel
                     }
                     else if (p.ToString() == "Cart")
                     {
-                        _navigate.CurrentPage = new CartViewModel(_accountStore, _productStore, _navigate);
+                        _navigate.CurrentPage = new CartViewModel(_accountStore, _productStore, _navigate, _dialogService);
                     }
                     else if (p.ToString() == "Order History")
                     {
@@ -69,11 +73,11 @@ namespace Sklep_WPF.ViewModel
                     }
                     else if (p.ToString() == "Login")
                     {
-                        _navigate.CurrentPage = new LoginViewModel(_accountStore, _navigate);
+                        _navigate.CurrentPage = new LoginViewModel(_accountStore, _navigate, _dialogService);
                     }
                     else if(p.ToString() == "Logout")
                     {
-                        _navigate.CurrentPage = new LoginViewModel(_accountStore, _navigate);
+                        _navigate.CurrentPage = new LoginViewModel(_accountStore, _navigate, _dialogService);
                     }
 
 

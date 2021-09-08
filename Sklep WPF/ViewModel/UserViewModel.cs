@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows;
 using System.ComponentModel;
 using Sklep_WPF.DAL.Repozytoria;
+using Sklep_WPF.Navigation.PopupService;
 
 namespace Sklep_WPF.ViewModel
 {
@@ -17,6 +18,7 @@ namespace Sklep_WPF.ViewModel
     class UserViewModel : ViewModelBase
     {
         private readonly AccountStore _accountStore;
+        private readonly IDialogService _dialogService;
         public BindingList<Address> addresses { get; set; }
 
         public string Email => _accountStore.CurrentAccount?.email;
@@ -24,9 +26,10 @@ namespace Sklep_WPF.ViewModel
         public string Surname => _accountStore.CurrentAccount?.nazwisko;
         public string PhoneNumber => _accountStore.CurrentAccount?.nr_tel;
 
-        public UserViewModel(AccountStore accountStore)
+        public UserViewModel(AccountStore accountStore, IDialogService dialogService)
         {
             _accountStore = accountStore;
+            _dialogService = dialogService;
 
             addresses = new BindingList<Address>(AddressRepo.getAllAddresses().Result);
         }

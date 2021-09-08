@@ -9,12 +9,11 @@ using System.Windows;
 using Sklep_WPF.Navigation;
 using Sklep_WPF.Model;
 using Sklep_WPF.CurrentSession;
+using Sklep_WPF.Navigation.PopupService;
 
 namespace Sklep_WPF.ViewModel
 {
     using BaseClass;
-    using Sklep_WPF.CurrentSession;
-    using System.Security;
 
     class LoginViewModel : ViewModelBase
     {
@@ -34,10 +33,10 @@ namespace Sklep_WPF.ViewModel
         public ICommand Login { get; }
         public ICommand Signup { get; }
 
-        public LoginViewModel(AccountStore accountStore, Navigate navigate)
+        public LoginViewModel(AccountStore accountStore, Navigate navigate, IDialogService dialogService)
         {
-            Login = new LoginCommand(this, accountStore, navigate);
-            Signup = new NavigateCommand<SignupViewModel>(navigate, () => new SignupViewModel(accountStore,navigate));
+            Login = new LoginCommand(this, accountStore, navigate, dialogService);
+            Signup = new NavigateCommand<SignupViewModel>(navigate, () => new SignupViewModel(accountStore, navigate, dialogService));
         }
 
 

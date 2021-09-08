@@ -8,6 +8,7 @@
         xmlns:views="clr-namespace:Sklep_WPF.View.Views"
         xmlns:vm="clr-namespace:Sklep_WPF.ViewModel"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="App" 
         Height="600" 
         Width="1000"
