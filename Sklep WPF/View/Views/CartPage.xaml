@@ -50,7 +50,7 @@
                                 <ColumnDefinition Width="116"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="140"/>
+                                <RowDefinition Height="129"/>
                             </Grid.RowDefinitions>
                             <TextBlock Grid.Column="0" Text="{Binding name}" TextWrapping="Wrap"/>
                             <StackPanel Grid.Column="1">
