@@ -11,7 +11,6 @@ namespace Sklep_WPF.Navigation.PopupService
         public string Message { get; set; }
         public T DialogResult { get; set; }
 
-        public DialogViewModelBase() : this(string.Empty) { }
         public DialogViewModelBase(string message)
         {
             Message = message;
