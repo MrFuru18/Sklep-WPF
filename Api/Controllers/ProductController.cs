@@ -23,14 +23,15 @@ namespace Api.Controllers
             db = dbContext;
         }
 
-        [HttpPost]
-        [Route("Add")]
-        [Authorize]
-        public void addProduct([FromBody] Product product)
-        {
-            db.Products.Add(product);
-            db.SaveChanges();
-        }
+        //[HttpPost]
+        //[Route("Add")]
+        //[Authorize]
+        //public void addProduct([FromBody] Product product)
+        //{
+        //    product.id = Guid.NewGuid();
+        //    db.Products.Add(product);
+        //    db.SaveChanges();
+        //}
 
         [HttpGet]
         [Route("getAll")]

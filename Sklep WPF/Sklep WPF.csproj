@@ -60,7 +60,6 @@
     </ApplicationDefinition>
     <Compile Include="CurrentSession\AccountStore.cs" />
     <Compile Include="CurrentSession\CartProductStore.cs" />
-    <Compile Include="Model\Account.cs" />
     <Compile Include="Model\Error.cs" />
     <Compile Include="Model\OrderHistory.cs" />
     <Compile Include="Model\OrderHistoryItem.cs" />
