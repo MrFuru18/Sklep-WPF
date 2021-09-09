@@ -37,7 +37,7 @@ namespace Sklep_WPF.Navigation
 
             if (string.IsNullOrWhiteSpace(account.email) || string.IsNullOrWhiteSpace(account.password))
             {
-                var result = _dialogService.OpenDialog(new AlertDialogViewModel("Pola nie mogą być puste"));
+                _dialogService.OpenDialog(new AlertDialogViewModel("Pola nie mogą być puste"));
             }
             else
             {
@@ -46,7 +46,7 @@ namespace Sklep_WPF.Navigation
                     _navigate.CurrentPage = new UserViewModel(_accountStore, _dialogService);
                 else
                 {
-                    var result = _dialogService.OpenDialog(new AlertDialogViewModel("Dane logowania nieprawidłowe"));
+                    _dialogService.OpenDialog(new AlertDialogViewModel("Dane logowania nieprawidłowe"));
                 }
             }
         }

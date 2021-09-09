@@ -63,12 +63,12 @@ namespace Sklep_WPF.ViewModel
                             _navigate.CurrentPage = new CheckoutViewModel(_accountStore, _productStore, _navigate, _dialogService);
                         else
                         {
-                            var result = _dialogService.OpenDialog(new AlertDialogViewModel("Koszyk jest pusty"));
+                            _dialogService.OpenDialog(new AlertDialogViewModel("Koszyk jest pusty"));
                         }
                     }
                     else
                     {
-                        var result = _dialogService.OpenDialog(new AlertDialogViewModel("Musisz być zalogowany"));
+                        _dialogService.OpenDialog(new AlertDialogViewModel("Musisz być zalogowany"));
                     }
                     
 

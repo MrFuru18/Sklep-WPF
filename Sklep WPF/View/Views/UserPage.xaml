@@ -111,7 +111,7 @@
                   Grid.Column="2"
                   Grid.ColumnSpan="3"
                   Height="185"
-                  Width="405"
+                  Width="400"
                   VerticalAlignment="Center"
                   HorizontalAlignment="Left"
                   FontSize="20"
@@ -122,8 +122,8 @@
                     <Border BorderThickness="1" BorderBrush="LightGray">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="285" />
-                                <ColumnDefinition Width="85"/>
+                                <ColumnDefinition Width="365" />
+                                <!--ColumnDefinition Width="85"/-->
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Column="0">
                                 <StackPanel Orientation="Horizontal">
@@ -139,7 +139,7 @@
                             </StackPanel>
 
                             <!-- Remove Address Button -->
-                            <Button Grid.Column="1"
+                            <!--Button Grid.Column="1"
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Center"
                                     Padding="5"
@@ -148,7 +148,7 @@
                                     Background="LightGray"
                                     Content="Usuń"
                                     Command="{Binding DataContext.RemoveAddress, RelativeSource={RelativeSource AncestorType=ListView}}"
-                                    CommandParameter="{Binding}"/>
+                                    CommandParameter="{Binding}"/-->
                         </Grid>
                     </Border>
                 </DataTemplate>

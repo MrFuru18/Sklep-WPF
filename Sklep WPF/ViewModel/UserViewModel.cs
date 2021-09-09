@@ -34,20 +34,5 @@ namespace Sklep_WPF.ViewModel
             addresses = new BindingList<Address>(AddressRepo.getAllAddresses().Result);
         }
 
-        private ICommand _removeAddress;
-        public ICommand RemoveAddress
-        {
-            get
-            {
-                return _removeAddress ?? (_removeAddress = new RelayCommand((p) =>
-                {
-                    Address selectedAddress = new Address();
-                    selectedAddress = (Address)p;
-                    //addresses.Remove(selectedAddress);
-                    //var result = _dialogService.OpenDialog(new AlertDialogViewModel("Adres usunięty"));
-
-                }, p => true));
-            }
-        }
     }
 }

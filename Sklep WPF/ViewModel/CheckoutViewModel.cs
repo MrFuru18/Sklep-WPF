@@ -163,11 +163,11 @@ namespace Sklep_WPF.ViewModel
                 {
                     if (string.IsNullOrWhiteSpace(Name)|| string.IsNullOrWhiteSpace(Surname) || string.IsNullOrWhiteSpace(Street) || string.IsNullOrWhiteSpace(Number) || string.IsNullOrWhiteSpace(ApartmentNumber) || string.IsNullOrWhiteSpace(PostalCode) || string.IsNullOrWhiteSpace(City) || string.IsNullOrWhiteSpace(PhoneNumber))
                     {
-                        var result = _dialogService.OpenDialog(new AlertDialogViewModel("Pola nie mogą być puste"));
+                        _dialogService.OpenDialog(new AlertDialogViewModel("Pola nie mogą być puste"));
                     }
                     else if (!long.TryParse(Number, out long value) || !long.TryParse(Number, out value))
                     {
-                        var result = _dialogService.OpenDialog(new AlertDialogViewModel("Format nieprawidłowy"));
+                        _dialogService.OpenDialog(new AlertDialogViewModel("Format nieprawidłowy"));
                     }
                     else
                     {
@@ -220,13 +220,13 @@ namespace Sklep_WPF.ViewModel
                                 pozycje = orderItems
                             };
                             order = OrderRepo.makeOrder(order).Result;
-                            var result = _dialogService.OpenDialog(new AlertDialogViewModel("Zamówienie złożono pomyślnie"));
+                            _dialogService.OpenDialog(new AlertDialogViewModel("Zamówienie złożono pomyślnie"));
                             _productStore.ClearCart();
                             _navigate.CurrentPage = new CartViewModel(_accountStore, _productStore, _navigate, _dialogService);
                         }
                         else
                         {
-                            var result = _dialogService.OpenDialog(new AlertDialogViewModel("Dane adresowe nie istnieją"));
+                            _dialogService.OpenDialog(new AlertDialogViewModel("Dane adresowe nie istnieją"));
                         }
                         
                     }
